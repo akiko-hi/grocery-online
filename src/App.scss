@@ -2,5 +2,62 @@
   display: flex;
   flex-flow: column;
   height: 100vh;
-}
+  background-color: rgba(200, 247, 157, 0.671);
 
+  nav {
+    display: flex;
+    padding: 0.5rem;
+    background-color: white;
+
+    .company-logo {
+      display: flex;
+      align-items: center;
+
+      .name {
+        color: #007837;
+        font-size: 2.5rem;
+        margin-right: 1rem;
+      }
+
+      .logo {
+        height: 5rem;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-flow: row;
+      flex: 1;
+      justify-content: flex-end;
+
+      li {
+        font-size: 1.5rem;
+        text-align: center;
+        list-style: none;
+        padding: 0.5rem 1rem;
+        transition: border-bottom 200ms;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          height: 2px;
+          background: greenyellow;
+          transition: transform ease-out 200ms;
+          transform: scaleX(0);
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          &::after {
+          transform: scaleX(1);
+          }
+        }
+      }
+    }
+  }
+}
