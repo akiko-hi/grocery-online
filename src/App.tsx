@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.scss';
 import logo from './images/logo.png';
+import Search from './Seach';
 
 function App() {
   return (
     <div className="App">
       <nav>
-      <div className="company-logo">
-      <div className="name">COUNTUP</div>
-      <img className="logo" src={logo} alt="logo" />
-      </div>
+        <div className="company-logo">
+          <div className="name">COUNTUP</div>
+          <img className="logo" src={logo} alt="logo" />
+        </div>
         <ul>
           <li>Home</li>
           <li>Cart</li>
@@ -17,7 +18,8 @@ function App() {
           <li>Settings</li>
         </ul>
       </nav>
-
+      <Search />
+    
     </div>
   );
 }
