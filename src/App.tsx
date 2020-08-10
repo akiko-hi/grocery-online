@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.scss';
 import logo from './images/logo.png';
 import Search from './Seach';
+import Categories from './Categories';
+
+
 
 function App() {
+
+
   return (
     <div className="App">
       <nav>
@@ -19,7 +24,7 @@ function App() {
         </ul>
       </nav>
       <Search />
-    
+      <Categories />
     </div>
   );
 }

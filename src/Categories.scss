@@ -1,0 +1,16 @@
+.Categories {
+    display: flex;
+    flex-flow: column;
+    align-self: stretch;
+    overflow: auto;
+
+    .title {
+        font-size: 1.3rem;
+        font-weight: bold;
+        align-self: center;
+    }
+
+    .category-container {
+        display: flex;
+    }
+}
