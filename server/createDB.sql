@@ -1,5 +1,6 @@
 drop table if exists Product;
 drop table if exists Category;
+drop table if exists User;
 
 create table Product (
 id integer primary key,
@@ -16,6 +17,12 @@ id integer primary key,
 name text,
 image text,
 color text
+);
+
+create table User (
+id integer primary key,
+name text,
+password text
 );
 
 insert into Category (id, name, image, color) values

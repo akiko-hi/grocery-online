@@ -89,11 +89,12 @@
 
     .modal-content {
         align-self: center;
-        background: green;
+        background: gray;
         border-radius: 5px;
-        padding: 1rem;
+        padding: 2rem;
         font-size: 1.1rem;
         color: white;
+        border: 2px solid black;
 
         p {
             padding: 1rem;
