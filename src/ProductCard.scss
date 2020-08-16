@@ -19,6 +19,10 @@
             background: none;
             font-size: 1.2rem;
             align-self: flex-end;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .product_name {
@@ -65,16 +69,28 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(206, 206, 206, 0.76);
+    background: rgba(255, 255, 255, 0.562);
+    display: flex;
+    justify-content: center;
 
     .modal-content {
-        display: flex;
         align-self: center;
-        background: white;
-        box-shadow: 2px 2px 5px rgba(182, 180, 180, 0.658);
+        background: green;
+        border-radius: 5px;
+        padding: 1rem;
+        font-size: 1.1rem;
+        color: white;
 
         p {
             padding: 1rem;
+            text-align: center;
+
+            span {
+                font-weight: bold;
+            }
         }
+    }
+    &:hover {
+        cursor: pointer;
     }
 }

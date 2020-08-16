@@ -28,12 +28,13 @@ export function ProductCard({ product }: ProductCardProps) {
             <p className="product_description">{product.description}</p>
             <p className="product_price">${product.price}</p>
             <button className="add_to_cart" onClick={() => addToCart(product)}>Add to cart</button>
-            <div className="modal-screen">
-                <div className="modal-content">
-                    <p>{product.name}: added to cart</p>
+            {addedToCart && <div onClick={() => setAddedToCart(!addedToCart)}className="modal-screen">
+                <div className="modal-content" onClick={() => setAddedToCart(!addedToCart)}>
+                    <p><span>{product.name}</span>: added to cart</p>
+                    <p>Click the screen to go back</p>
                 </div>
-            </div>
-           
+            </div>}
+
         </div>
     </div>
 }
