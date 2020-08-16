@@ -21,14 +21,14 @@ export function ProductCard({ product }: ProductCardProps) {
 
     return <div className="ProductCard">
         <div className="product_container">
-            <button className="add_to_favorite" onClick={() => dispatch(actions.addToFavorite(product))}>
-                {favorite.some(item => item.id === product.id) ? "♥" : "♡"}</button>
+            <button className={favorite.some(item => item.id === product.id) ? "like liked" : "like"}
+                onClick={() => dispatch(actions.addToFavorite(product))} ></button>
             <img className="product_image" src={"/images/" + product.image} alt="product" />
             <p className="product_name">{product.name}</p>
             <p className="product_description">{product.description}</p>
             <p className="product_price">${product.price}</p>
             <button className="add_to_cart" onClick={() => addToCart(product)}>Add to cart</button>
-            {addedToCart && <div onClick={() => setAddedToCart(!addedToCart)}className="modal-screen">
+            {addedToCart && <div onClick={() => setAddedToCart(!addedToCart)} className="modal-screen">
                 <div className="modal-content" onClick={() => setAddedToCart(!addedToCart)}>
                     <p><span>{product.name}</span>: added to cart</p>
                     <p>Click the screen to go back</p>
