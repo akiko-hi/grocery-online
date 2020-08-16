@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")))
 
 app.get('/api/categories/', action(getCategories));
+app.get('/api/products/', action(getProducts));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -30,4 +31,9 @@ async function openDB() {
 async function getCategories() {
     const db = await openDB()
     return await db.all('select c.id, c.name, c.image, c.color from Category c;')
+}
+
+async function getProducts() {
+    const db = await openDB()
+    return await db.all('select p.id, p.name, p.price, p.image, p.description, p.category_id from Product p;')
 }
