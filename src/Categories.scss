@@ -1,16 +1,17 @@
 .Categories {
     display: flex;
     flex-flow: column;
-    align-self: stretch;
-    overflow: auto;
+    align-items: center;
 
     .title {
         font-size: 1.3rem;
         font-weight: bold;
         align-self: center;
+        margin: 1.5rem 0;   
     }
 
     .category-container {
         display: flex;
+        flex-flow: column;
     }
 }

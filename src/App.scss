@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   height: 100vh;
-  background-color: rgba(200, 247, 157, 0.671);
+  background-color: rgba(216, 210, 210, 0.295);
 
   nav {
     display: flex;
@@ -31,30 +31,41 @@
       justify-content: flex-end;
 
       li {
-        font-size: 1.5rem;
-        text-align: center;
         list-style: none;
-        padding: 0.5rem 1rem;
-        transition: border-bottom 200ms;
-        position: relative;
 
-        &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          height: 2px;
-          background: greenyellow;
-          transition: transform ease-out 200ms;
-          transform: scaleX(0);
-        }
-
-        &:hover {
-          cursor: pointer;
+        a {
+          text-decoration: none;
+          color: inherit;
+          font-size: 1.5rem;
+          text-align: center;
+          padding: 0.5rem 1rem;
+          transition: border-bottom 200ms;
+          position: relative;
 
           &::after {
-            transform: scaleX(1);
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 2px;
+            background: greenyellow;
+            transition: transform ease-out 200ms;
+            transform: scaleX(0);
+          }
+
+          &.active {
+            &::after {
+              transform: scaleX(1);
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+
+            &::after {
+              transform: scaleX(1);
+            }
           }
         }
       }

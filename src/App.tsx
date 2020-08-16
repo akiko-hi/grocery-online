@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import './App.scss';
+import Cart from './Cart';
+import Favorites from './Favorites';
+import Home from './Home';
 import logo from './images/logo.png';
-import Search from './Seach';
-import Categories from './Categories';
-
+import Settings from './Settings';
+import { useSelector } from './store';
 
 
 function App() {
+
+  const cart = useSelector(s => s.cart)
+
 
 
   return (
@@ -17,15 +23,28 @@ function App() {
           <img className="logo" src={logo} alt="logo" />
         </div>
         <ul>
-          <li>Home</li>
-          <li>Cart</li>
-          <li>Favorites</li>
-          <li>Settings</li>
+          <li><NavLink replace exact to="/">Home</NavLink></li>
+          <li><NavLink replace to="/cart">Cart</NavLink></li>
+          <li><NavLink replace to="/favorites">Favorites</NavLink></li>
+          <li><NavLink replace to="/settings">Settings</NavLink></li>
         </ul>
       </nav>
-      <Search />
-      <Categories />
-    </div>
+   
+      <Switch>
+        <Route exact path ="/">
+          <Home />
+        </Route>
+        <Route path ="/cart">
+        <Cart />
+        </Route>
+        <Route path ="/favorites">
+        <Favorites />
+        </Route>
+        <Route path ="/settings">
+        <Settings />
+        </Route>
+      </Switch>
+    </div >
   );
 }
 
