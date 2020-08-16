@@ -7,7 +7,8 @@ import Home from './Home';
 import logo from './images/logo.png';
 import Settings from './Settings';
 import { useSelector } from './store';
-import Register from './Register';
+import Register from './RegisterForm';
+import RegisterForm from './RegisterForm';
 
 
 function App() {
@@ -47,7 +48,10 @@ function App() {
           <Settings />
         </Route>
         <Route path="/register" >
-          <Register/>
+          <RegisterForm title="Create an account" btn_message="Create your account"/>
+        </Route>
+        <Route path="/sign_in">
+          <RegisterForm title="Sign-in" btn_message="Sign-in"/>
         </Route>
       </Switch>
     </div >
