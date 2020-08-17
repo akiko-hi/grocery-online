@@ -8,7 +8,7 @@ import logo from './images/logo.png';
 import RegisterForm from './RegisterForm';
 import Settings from './Settings';
 import { useSelector, actions } from './store';
-import { signIn } from './api';
+import { signIn, signUp } from './api';
 import { useDispatch } from 'react-redux';
 
 
@@ -23,10 +23,22 @@ function App() {
     if (user === null) {
       alert("login failed")
     } else {
-      dispatch(actions.login(user))
+      dispatch(actions.signIn(user))
       history.replace("/")
     }
   }
+
+  async function onSignUp(name: string, password: string) {
+    const user = await signUp(name, password)
+    if (user === null) {
+      alert('failed')
+    } else {
+      dispatch(actions.signIn(user))
+      history.replace("/")
+    }
+  }
+
+
 
   return (
     <div className="App">
@@ -34,7 +46,7 @@ function App() {
         <div className="company-logo">
           <div className="name">COUNTUP</div>
           <img className="logo" src={logo} alt="logo" />
-          <p>Hi!{user == null ? " guest" : " " + user.name}</p>
+          <p>Hi {user == null ? "guest" : user.name}!</p>
         </div>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
@@ -47,7 +59,7 @@ function App() {
               <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
             </>
             :
-            <li onClick={() => dispatch(actions.login(user))}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+            <li onClick={() => dispatch(actions.signOut())}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
           }
 
         </ul>
@@ -67,7 +79,7 @@ function App() {
           <Settings />
         </Route>
         <Route path="/register" >
-          <RegisterForm title="Create an account" btn_message="Create your account" onClick={() => { }} />
+          <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} />
         </Route>
         <Route path="/sign_in">
           <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />

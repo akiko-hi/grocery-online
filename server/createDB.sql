@@ -20,8 +20,8 @@ color text
 );
 
 create table User (
-id integer primary key,
-name text,
+id integer primary key autoincrement,
+name text unique collate nocase,
 password text
 );
 

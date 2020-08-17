@@ -33,9 +33,18 @@ export async function getProducts(): Promise<Product[]> {
     return res.json()
 }
 
-export async function signIn(name:string, password:string): Promise<User|null> {
+export async function signIn(name: string, password: string): Promise<User | null> {
     const res = await fetch('/api/signIn', {
-        method:'POST',
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name, password }),
+    });
+    return res.json()
+}
+
+export async function signUp(name: string, password: string): Promise<User | null> {
+    const res = await fetch('/api/signUp', {
+        method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ name, password }),
     });

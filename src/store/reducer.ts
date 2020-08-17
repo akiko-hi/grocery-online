@@ -69,11 +69,11 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
 function user(state: User | null = null, action: Actions): User | null {
 
     switch (action.type) {
-        case getType(actions.login):
-            if (state !== null) {
-                return null
-            }
+        case getType(actions.signIn):
             return action.payload
+
+        case getType(actions.signOut):
+            return null
 
         default:
             return state
