@@ -6,7 +6,7 @@ export const addToCart = createAction("ADD_TO_CART")<Product>()
 export const increaseQty = createAction("INCREASE_QTY")<number>()
 export const decreaseQty = createAction("DECREASE_QTY")<number>()
 export const addToFavorite = createAction("ADD_TO_FAVORITE")<Product>()
-export const removeFromCart = createAction("REMOVE_FROM_CART")<Product>()
+export const removeFromCart = createAction("REMOVE_FROM_CART")<number>()
 
 // export function increaseQty(id: number) {
 //     return { type: "INCREASE_QTY", payload: id }

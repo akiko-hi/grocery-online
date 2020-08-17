@@ -40,7 +40,7 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
                 .filter(item => item.quantity !== 0)
 
         case getType(actions.removeFromCart):
-            return state.filter(item => item.product.id !== action.payload.id)
+            return state.filter(item => item.product.id !== action.payload)
 
         default:
             return state
