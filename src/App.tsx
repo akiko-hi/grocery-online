@@ -34,15 +34,22 @@ function App() {
         <div className="company-logo">
           <div className="name">COUNTUP</div>
           <img className="logo" src={logo} alt="logo" />
-          <div>hi,{user == null ? "guest" : user.name}</div>
+          <p>Hi!{user == null ? " guest" : " " + user.name}</p>
         </div>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
           <li><NavLink replace to="/cart">Cart</NavLink></li>
           <li><NavLink replace to="/favorites">Favorites</NavLink></li>
           <li><NavLink replace to="/settings">Settings</NavLink></li>
-          <li><NavLink replace to="/register">Register</NavLink></li>
-          <li><NavLink replace to="/sign_in">{user !== null ? "Sign Out" : "Sign In"}</NavLink></li>
+          {user === null ?
+            <>
+              <li><NavLink replace to="/register">Register</NavLink></li>
+              <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
+            </>
+            :
+            <li onClick={() => dispatch(actions.login(user))}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+          }
+
         </ul>
       </nav>
 
