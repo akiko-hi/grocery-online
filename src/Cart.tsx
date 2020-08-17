@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import './Cart.scss';
 import { actions, useSelector } from './store';
+import Remove from './images/close.png';
 
 export default function Cart() {
 
@@ -15,9 +16,11 @@ export default function Cart() {
             <div className="cart_products">
                 {cart.map(item =>
                     <div key={item.product.id} className="cartP_container">
+                        <img className="remove-btn" onClick={() => dispatch(actions.removeFromCart(item.product))}
+                            src={Remove} alt="remove button" />
                         <img className="cartP_image" src={"/images/" + item.product.image} alt="product" />
                         <div className="cartP_details">
-                            <div>{item.product.name}</div>
+                            <div className="cartP_name">{item.product.name}</div>
                             <div className="cartP_description">{item.product.description}</div>
                         </div>
                         <div className="quantity_container">
@@ -31,7 +34,7 @@ export default function Cart() {
             </div>
         </div>
         <div className="payment_details">
-            <p>Subtotal ({cart.length} items): ${totalPrice}</p>
+            <p>Subtotal ({cart.length} items): <span>${totalPrice}</span></p>
             <button>Proceed to checkout</button>
         </div>
     </div>

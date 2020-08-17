@@ -22,7 +22,10 @@ type CartItem = {
 function cart(state: CartItem[] = [], action: Actions): CartItem[] {
     switch (action.type) {
         case getType(actions.addToCart):
-            if (state.some(item => item.product.id === action.payload.id)) {
+
+            const hasExistingItem = state.some(item => item.product.id === action.payload.id)
+
+            if (hasExistingItem) {
                 return cart(state, actions.increaseQty(action.payload.id))
             }
             return [...state, { product: action.payload, quantity: 1 }]
@@ -36,6 +39,9 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
                 { ...item, quantity: item.quantity - 1 } : item)
                 .filter(item => item.quantity !== 0)
 
+        case getType(actions.removeFromCart):
+            return state.filter(item => item.product.id !== action.payload.id)
+
         default:
             return state
     }
@@ -47,9 +53,9 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
     switch (action.type) {
         case getType(actions.addToFavorite):
 
-            const hasExistingItem = state.some(item => item.id === action.payload.id)
+            const isFavorited = state.some(item => item.id === action.payload.id)
 
-            if (hasExistingItem) {
+            if (isFavorited) {
                 return state.filter(item => item.id !== action.payload.id)
             }
 

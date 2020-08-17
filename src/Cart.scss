@@ -6,7 +6,7 @@
     .scroller {
         display: flex;
         flex-flow: column;
-        flex: 1;
+        flex: 2;
         overflow: auto;
         margin-right: 1rem;
     }
@@ -14,7 +14,7 @@
     .cart_products {
         display: flex;
         flex-flow: column;
-        flex: 1;
+        flex: 2;
         padding: 0 1rem;
     }
 
@@ -24,11 +24,21 @@
         margin-bottom: 1rem;
         box-shadow: 2px 2px 5px rgba(182, 180, 180, 0.658);
 
+        .remove-btn {
+            height: 2rem;
+            margin: .5rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+        }
+
         .cartP_image {
             height: 10rem;
             width: 10rem;
             object-fit: contain;
-            margin: 0 1rem;
+            margin: 0 .5rem;
         }
 
         .cartP_price {
@@ -46,6 +56,12 @@
             flex-flow: column;
             justify-content: center;
             flex: 1;
+
+            .cartP_name {
+                font-size: 1.1rem;
+                font-weight: 600;
+                margin-bottom: .5rem;
+            }
 
             .cartP_description {
                 margin-bottom: 0.5rem;
@@ -83,29 +99,33 @@
     .payment_details {
         display: flex;
         flex-flow: column;
-        align-items: center;
         align-self: flex-start;
         box-shadow: 2px 2px 5px rgba(182, 180, 180, 0.658);
-        background: rgb(238, 157, 157);
+        background: rgba(255, 76, 76, 0.74);
         padding: 1rem;
         margin-right: 1rem;
+        flex: 0.5;
 
         p {
-            font-weight: bold;
             font-size: 1.2rem;
+            margin-bottom: 1rem;
+
+            span {
+                font-weight: bold;
+            }
         }
 
         button {
-            border: none;
-            padding: 1rem;
-            background: lightgrey;
+            border: 1px black solid;
+            padding: .5rem;
+            background: rgba(255, 255, 255, 0.849);
             margin-top: auto;
             border-radius: 5px;
             width: 100%;
-            font-size: 1.1rem;
+            
 
             &:hover {
-                cursor: pointer;
+                background: white;
             }
 
             &:active {

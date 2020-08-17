@@ -23,4 +23,8 @@ body {
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
