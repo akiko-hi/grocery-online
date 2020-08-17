@@ -2,9 +2,10 @@ import { combineReducers } from "redux";
 import { getType } from "typesafe-actions";
 import { Actions } from ".";
 import * as actions from "./actions";
-import { Product } from "../api";
+import { Product, User } from "../api";
 
 function categoryId(state: number | null = null, action: Actions): number | null {
+
     switch (action.type) {
         case getType(actions.pickCategory):
             return action.payload
@@ -49,7 +50,6 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
 
 function favorite(state: Product[] = [], action: Actions): Product[] {
 
-
     switch (action.type) {
         case getType(actions.addToFavorite):
 
@@ -66,10 +66,23 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
     }
 }
 
+function user(state: User | null = null, action: Actions): User | null {
+
+    switch(action.type) {
+        case getType(actions.login):
+
+            return action.payload
+
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     categoryId,
     cart,
-    favorite
+    favorite,
+    user
 })
 
 // export function selectCounter(state: StoreState) {

@@ -68,3 +68,6 @@ insert into Product (id, name, price, image, description,category_id) values
 (26, 'Toilet rolls', 10, 'toiletrolls.png','12 rolls',6),
 (27, 'Tissue box', 3, 'tissuebox.png','4 rolls.',6)
 ;
+
+insert into User (id, name, password) values 
+(1, 'Akiko', '123');

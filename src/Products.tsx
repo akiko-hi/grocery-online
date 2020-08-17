@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { getProducts, Product } from './api';
 import { ProductCard } from './ProductCard';
 import './Products.scss';
@@ -25,4 +24,3 @@ export default function Products() {
             .map(product => <ProductCard key={product.id} product={product}/>)}
     </div>
 }
-//♥ 

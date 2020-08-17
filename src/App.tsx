@@ -1,21 +1,32 @@
 import React from 'react';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
 import './App.scss';
 import Cart from './Cart';
 import Favorites from './Favorites';
 import Home from './Home';
 import logo from './images/logo.png';
-import Settings from './Settings';
-import { useSelector } from './store';
-import Register from './RegisterForm';
 import RegisterForm from './RegisterForm';
+import Settings from './Settings';
+import { useSelector, actions } from './store';
+import { signIn } from './api';
+import { useDispatch } from 'react-redux';
 
 
 function App() {
 
-  const cart = useSelector(s => s.cart)
+  const user = useSelector(s => s.user)
+  const dispatch = useDispatch()
+  const history = useHistory()
 
-
+  async function onSignIn(name: string, password: string) {
+    const user = await signIn(name, password)
+    if (user === null) {
+      alert("login failed")
+    } else {
+      dispatch(actions.login(user))
+      history.replace("/")
+    }
+  }
 
   return (
     <div className="App">
@@ -23,6 +34,7 @@ function App() {
         <div className="company-logo">
           <div className="name">COUNTUP</div>
           <img className="logo" src={logo} alt="logo" />
+          <div>hi,{user == null ? "guest" : user.name}</div>
         </div>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
@@ -30,7 +42,7 @@ function App() {
           <li><NavLink replace to="/favorites">Favorites</NavLink></li>
           <li><NavLink replace to="/settings">Settings</NavLink></li>
           <li><NavLink replace to="/register">Register</NavLink></li>
-          <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
+          <li><NavLink replace to="/sign_in">{user !== null ? "Sign Out" : "Sign In"}</NavLink></li>
         </ul>
       </nav>
 
@@ -48,10 +60,10 @@ function App() {
           <Settings />
         </Route>
         <Route path="/register" >
-          <RegisterForm title="Create an account" btn_message="Create your account"/>
+          <RegisterForm title="Create an account" btn_message="Create your account" onClick={() => { }} />
         </Route>
         <Route path="/sign_in">
-          <RegisterForm title="Sign-in" btn_message="Sign-in"/>
+          <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
         </Route>
       </Switch>
     </div >

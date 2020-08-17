@@ -13,6 +13,7 @@ app.use("/images", express.static(path.join(__dirname, "images")))
 
 app.get('/api/categories/', action(getCategories));
 app.get('/api/products/', action(getProducts));
+app.post('/api/signIn', action(signIn));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -37,3 +38,14 @@ async function getProducts() {
     const db = await openDB()
     return await db.all('select p.id, p.name, p.price, p.image, p.description, p.category_id from Product p;')
 }
+
+async function signIn(params, body) {
+    const db = await openDB()
+    console.log(body)
+    const user = await db.get('select u.id, u.name from User u where u.name = ? and u.password = ?', body.name, body.password)
+    return user === undefined ? null : user
+}
+
+// async function getUsers() {
+
+// }
