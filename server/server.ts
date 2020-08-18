@@ -13,6 +13,7 @@ app.use("/images", express.static(path.join(__dirname, "images")))
 
 app.get('/api/categories/', action(getCategories));
 app.get('/api/products/', action(getProducts));
+app.get('/api/search', action(searchProducts));
 app.post('/api/signIn', action(signIn));
 app.post('/api/signUp', action(signUp));
 
@@ -20,7 +21,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 function action(func: (params: Record<string, string>, body: any) => Promise<any>) {
     return function (req: Request, res: Response) {
-        func(req.params, req.body)
+        func(req.query as any, req.body)
             .then(x => res.json(x))
             .catch(err => res.status(500).send(err.message))
     }
@@ -57,6 +58,13 @@ async function signUp(params, body) {
         return null
     }
 }
+
+
+async function searchProducts(params) {
+    const db = await openDB()
+    return await db.all('select * from Product p where p.name like ?', params.name + "%")
+}
+
 
 
 

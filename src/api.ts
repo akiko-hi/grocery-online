@@ -33,6 +33,11 @@ export async function getProducts(): Promise<Product[]> {
     return res.json()
 }
 
+export async function searchProducts(name: string): Promise<Product[]> {
+    const res = await fetch(`/api/search?name=${encodeURIComponent(name)}`);
+    return res.json();
+}
+
 export async function signIn(name: string, password: string): Promise<User | null> {
     const res = await fetch('/api/signIn', {
         method: 'POST',

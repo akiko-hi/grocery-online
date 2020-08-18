@@ -10,6 +10,9 @@ function categoryId(state: number | null = null, action: Actions): number | null
         case getType(actions.pickCategory):
             return action.payload
 
+        case getType(actions.setSearchResult):
+            return null
+
         default:
             return state
     }
@@ -80,11 +83,26 @@ function user(state: User | null = null, action: Actions): User | null {
     }
 }
 
+function searchResult(state: Product[] = [], action: Actions): Product[] {
+
+    switch (action.type) {
+        case getType(actions.setSearchResult):
+            return action.payload
+
+        case getType(actions.pickCategory):
+            return []
+
+        default:
+            return state
+    }
+}
+
 export default combineReducers({
     categoryId,
     cart,
     favorite,
-    user
+    user,
+    searchResult
 })
 
 // export function selectCounter(state: StoreState) {

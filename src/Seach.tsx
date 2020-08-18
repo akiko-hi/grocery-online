@@ -1,14 +1,37 @@
-import React from 'react';
-import './Search.scss';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchProducts } from './api';
 import search from './images/search-enter.png';
+import './Search.scss';
+import { actions } from './store';
+
 
 export default function Search() {
-    return <div className="Search">
+
+    const dispatch = useDispatch()
+    const [searchWord, setSearhWord] = useState("")
+
+    async function searchProduct(word: string) {
+        if (word === "") {
+            dispatch(actions.setSearchResult([]))
+        } else {
+            const res = await searchProducts(word)
+            dispatch(actions.setSearchResult(res))
+        }
+    }
+
+    function onSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        searchProduct(searchWord)
+    }
+
+    return <form className="Search" onSubmit={onSubmit}>
+
         <div className="input-container">
-            <input />
-            <button className="search-btn">
+            <input onChange={e => setSearhWord(e.currentTarget.value)} value={searchWord} autoFocus />
+            <button onClick={() => searchProduct(searchWord)} className="search-btn">
                 <img className="searchImg" src={search} alt="search button" />
             </button>
         </div>
-    </div>
+    </form>
 }

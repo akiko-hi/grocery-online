@@ -8,6 +8,7 @@ export default function Products() {
 
     const [products, setProducts] = useState<Product[]>([])
     const categoryId = useSelector(s => s.categoryId)
+    const searchedProduct = useSelector(s => s.searchResult)
 
 
     useEffect(() => {
@@ -20,6 +21,7 @@ export default function Products() {
     }, [])
 
     return <div className="Products">
+        {searchedProduct.map(item => <ProductCard key={item.id} product={item}/>)}
         {products.filter(product => product.category_id === categoryId)
             .map(product => <ProductCard key={product.id} product={product}/>)}
     </div>

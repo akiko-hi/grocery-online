@@ -10,7 +10,8 @@ type CategoryCardProps = {
 
 export default function CategoryCard({ category }: CategoryCardProps) {
   const dispatch = useDispatch()
-  
+
+   
   return <div className="CategoryCard" onClick={() => dispatch(actions.pickCategory(category.id))}>
         <p style={{background: category.color}}>{category.name}</p>
         <img src={"/images/" + category.image} alt="product"/>

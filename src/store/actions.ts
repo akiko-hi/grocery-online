@@ -9,6 +9,7 @@ export const addToFavorite = createAction("ADD_TO_FAVORITE")<Product>()
 export const removeFromCart = createAction("REMOVE_FROM_CART")<number>()
 export const signIn = createAction("SIGNIN")<User>()
 export const signOut = createAction("SIGNOUT")()
+export const setSearchResult = createAction("SET_SEARCH_RESULT")<Product[]>()
 
 
 // export function increaseQty(id: number) {

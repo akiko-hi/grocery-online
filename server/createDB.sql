@@ -25,6 +25,8 @@ name text unique collate nocase,
 password text
 );
 
+
+
 insert into Category (id, name, image, color) values
 (1, 'Fruit', 'fruit.png', 'pink'),
 (2, 'Vegetables', 'vegetable.png', 'greenyellow'),
