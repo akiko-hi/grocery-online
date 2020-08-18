@@ -2,9 +2,11 @@
     display: flex;
     flex-flow: column;
     flex: 1;
+    min-height: 0;
 
     main {
         display: flex;
         flex-flow: row;
+        min-height: 0;
     }
 }
