@@ -1,7 +1,6 @@
 .Categories {
     display: flex;
     flex-flow: column;
-    align-items: center;
 
     .title {
         font-size: 1.3rem;
@@ -13,5 +12,6 @@
     .category-container {
         display: flex;
         flex-flow: column;
+        align-items: flex-start;
     }
 }
