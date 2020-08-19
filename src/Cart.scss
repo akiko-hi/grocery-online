@@ -113,9 +113,9 @@
         display: flex;
         flex-flow: column;
         align-self: flex-start;
-        box-shadow: 2px 2px 5px rgba(182, 180, 180, 0.658);
-        background: rgba(255, 76, 76, 0.74);
-        padding: 1rem;
+        box-shadow: 2px 2px 3px rgba(97, 95, 95, 0.658);
+        background: rgba(151, 149, 149, 0.74);
+        padding: 1.5rem;
         margin-right: 1rem;
         flex: 0.5;
 
@@ -128,13 +128,14 @@
             }
         }
 
-        button {
+        .checkout-btn {
             border: 1px black solid;
-            padding: 0.5rem;
+            padding: .5rem;
             background: rgba(255, 255, 255, 0.849);
             margin-top: auto;
             border-radius: 5px;
             width: 100%;
+            text-align: center;
 
             &:hover {
                 background: white;

@@ -18,11 +18,17 @@
         color: #007837;
         font-size: 2.5rem;
         margin-right: 1rem;
+        text-decoration: none;
       }
 
       .logo {
         height: 5rem;
       }
+    }
+
+    p {
+      display: flex;
+      align-items: center;
     }
 
     ul {

@@ -1,0 +1,105 @@
+.CheckOut {
+    display: flex;
+    flex-flow: column;
+    overflow: auto;
+    align-items: center;
+    flex: 1;
+    
+    h1 {
+        margin: 0;
+        margin-bottom: 1rem
+    } 
+
+    .summary {
+        display: flex;
+        flex-flow: row;
+        flex: 2;
+        align-self: stretch;
+        align-items: center;
+        
+        .table_container {
+            flex: 2;
+            margin: 0 1rem;
+            overflow: auto;
+            min-height: 0;
+            align-self: stretch;
+        }
+
+        table {
+            background: white;
+            min-width: 50%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            width: 100%;
+            border-collapse: collapse;
+
+            .total_row {
+                text-align: right;
+            }
+
+            th {
+                padding: 0.2rem;
+                background: yellowgreen;
+                border-right: 2px dashed gray;
+                font-size: 1.2rem;
+            }
+
+            td {
+                padding: 0.2rem;
+                text-align: right;
+                border-right: 2px dashed gray;
+            }
+
+            tr {
+                :last-child {
+                    border-right: none;
+                }
+            }
+
+            .product_name {
+                text-align: center;
+            }
+
+            .total_price {
+                font-size: 1.2rem;
+                background: yellowgreen;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .confirm_section {
+        display: flex;
+        flex-flow: column;
+        align-self: flex-start;
+        box-shadow: 2px 2px 3px rgba(97, 95, 95, 0.658);
+        background: rgba(151, 149, 149, 0.74);
+        padding: 1.5rem;
+        margin-right: 1rem;
+
+        p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .confirm_btn {
+            border: 1px black solid;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.849);
+            margin-top: auto;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+
+            &:hover {
+                background: white;
+            }
+
+            &:active {
+                border: 1px solid red;
+            }
+
+        }
+    }
+}

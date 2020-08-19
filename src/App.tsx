@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, Route, Switch, useHistory, Link } from 'react-router-dom';
 import './App.scss';
 import Cart from './Cart';
 import Favorites from './Favorites';
@@ -8,8 +8,9 @@ import logo from './images/logo.png';
 import RegisterForm from './RegisterForm';
 import Settings from './Settings';
 import { useSelector, actions } from './store';
-import { signIn, signUp } from './api';
+import { signIn, signUp, whoAmI } from './api';
 import { useDispatch } from 'react-redux';
+import CheckOut from './CheckOut';
 
 
 function App() {
@@ -17,6 +18,17 @@ function App() {
   const user = useSelector(s => s.user)
   const dispatch = useDispatch()
   const history = useHistory()
+
+  useEffect(() => {
+    load()
+
+    async function load() {
+      const user = await whoAmI();
+      if (user !== null) {
+        dispatch(actions.signIn(user));
+      }
+    }
+  }, [dispatch])
 
   async function onSignIn(name: string, password: string) {
     const user = await signIn(name, password)
@@ -43,11 +55,13 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <div className="company-logo">
-          <div className="name">COUNTUP</div>
-          <img className="logo" src={logo} alt="logo" />
-          <p>Hi {user == null ? "guest" : user.name}!</p>
-        </div>
+        <Link to="/">
+          <div className="company-logo">
+            <div className="name">COUNTUP</div>
+            <img className="logo" src={logo} alt="logo" />
+          </div>
+        </Link>
+        <p>Hi {user == null ? "guest" : user.name}!</p>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
           <li><NavLink replace to="/cart">Cart</NavLink></li>
@@ -69,8 +83,11 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/cart">
+        <Route exact path="/cart">
           <Cart />
+        </Route>
+        <Route path="/cart/checkout">
+          <CheckOut />
         </Route>
         <Route path="/favorites">
           <Favorites />
