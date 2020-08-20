@@ -17,6 +17,7 @@ app.get('/api/categories/', action(getCategories));
 app.get('/api/products/', action(getProducts));
 app.get('/api/search', action(searchProducts));
 app.post('/api/signIn', action(signIn));
+app.post('/api/signOut', action(signOut));
 app.post('/api/signUp', action(signUp));
 app.get('/api/whoAmI', action(whoAmI));
 app.post('/api/confirmOrder', action(confirmOrder));
@@ -57,6 +58,10 @@ async function signIn(req: Request) {
         req.session = null
         return null
     }
+}
+
+async function signOut(req: Request) {
+    req.session = null
 }
 
 async function signUp({ body }: Request) {

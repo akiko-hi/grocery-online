@@ -55,6 +55,12 @@ export async function signIn(name: string, password: string): Promise<User | nul
     return res.json()
 }
 
+export async function signOut() {
+    await fetch('/api/signOut', {
+        method: 'POST'
+    })
+}
+
 export async function signUp(name: string, password: string): Promise<User | null> {
     const res = await fetch('/api/signUp', {
         method: 'POST',
@@ -79,6 +85,5 @@ export async function confirmOrder(cart: CartItem[]): Promise<number> {
     await new Promise(res => setTimeout(res, 3000))
 
     return res.json()
-
-   
+  
 }

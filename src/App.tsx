@@ -8,7 +8,7 @@ import logo from './images/logo.png';
 import RegisterForm from './RegisterForm';
 import Settings from './Settings';
 import { useSelector, actions } from './store';
-import { signIn, signUp, whoAmI } from './api';
+import { signIn, signUp, whoAmI, signOut } from './api';
 import { useDispatch } from 'react-redux';
 import CheckOut from './CheckOut';
 
@@ -50,7 +50,10 @@ function App() {
     }
   }
 
-
+  async function onSignOut() {
+    dispatch(actions.signOut())
+    await signOut()
+  }
 
   return (
     <div className="App">
@@ -73,7 +76,7 @@ function App() {
               <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
             </>
             :
-            <li onClick={() => dispatch(actions.signOut())}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+            <li onClick={onSignOut}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
           }
 
         </ul>
