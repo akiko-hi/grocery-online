@@ -7,9 +7,9 @@ import './Home.scss'
 export default function Home() {
     return <div className="Home">
         <Search />
-        <main>
+        <div className="main_row">
             <Categories />
             <Products />
-        </main>
+        </div>
     </div>
 }

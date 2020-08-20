@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Cart.scss';
 import Remove from './images/close.png';
-import ShoppingCart from './images/shopping_cart.png';
+import EmptyCart from './images/empty_cart.svg';
 import { actions, useSelector } from './store';
 import { getTotalPrice } from './cart_function';
 
@@ -18,7 +18,7 @@ export default function Cart() {
         {cart.length === 0 ?
             <div className="empty_cart_screen">
                 <p>Your cart is empty</p>
-                <img src={ShoppingCart} alt="shopping cart" />
+                <img src={EmptyCart} alt="shopping cart" />
             </div>
             :
             <>

@@ -1,4 +1,40 @@
 .Favorites {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column;
+    flex: 1;
+    align-items: center;
+
+    .empty_favorite {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .empty_favorite_img {
+            margin-top: 1rem;
+            width: 20rem;
+        }
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .favorited_products_container {
+        display: flex;
+        flex-flow: row wrap;
+        overflow: auto;
+        padding: 0 1rem;
+
+        .favorited_products_row {
+            display: flex;
+        }
+    }
 }

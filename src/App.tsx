@@ -78,30 +78,31 @@ function App() {
 
         </ul>
       </nav>
-
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/cart">
-          <Cart />
-        </Route>
-        <Route path="/cart/checkout">
-          <CheckOut />
-        </Route>
-        <Route path="/favorites">
-          <Favorites />
-        </Route>
-        <Route path="/settings">
-          <Settings />
-        </Route>
-        <Route path="/register" >
-          <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} />
-        </Route>
-        <Route path="/sign_in">
-          <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
-        </Route>
-      </Switch>
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/cart/checkout">
+            <CheckOut />
+          </Route>
+          <Route path="/favorites">
+            <Favorites />
+          </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/register" >
+            <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} />
+          </Route>
+          <Route path="/sign_in">
+            <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+          </Route>
+        </Switch>
+      </main>
     </div >
   );
 }

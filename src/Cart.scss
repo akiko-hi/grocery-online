@@ -8,12 +8,17 @@
         flex-flow: column;
         align-items: center;
         flex: 1;
-        margin: auto 0;
 
         p {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: auto;
+            margin-bottom: 3rem;
+        }
+
+        img {
+            width: 20rem;
+            margin-bottom: auto;
         }
     }
 
