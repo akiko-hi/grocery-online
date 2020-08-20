@@ -1,6 +1,8 @@
 drop table if exists Product;
 drop table if exists Category;
 drop table if exists User;
+drop table if exists "Order";
+drop table if exists OrderItem;
 
 create table Product (
 id integer primary key,
@@ -25,7 +27,21 @@ name text unique collate nocase,
 password text
 );
 
+create table "Order" (
+id integer primary key autoincrement,
+user_id integer not null,
+date date,
+foreign key (user_id) references User(id)
+);
 
+create table OrderItem (
+id integer primary key autoincrement,
+order_id integer not null,
+product_id integer not null,
+quantity integer,
+foreign key (order_id) references "Order"(id),
+foreign key (product_id) references Product(id)
+);
 
 insert into Category (id, name, image, color) values
 (1, 'Fruit', 'fruit.png', 'pink'),

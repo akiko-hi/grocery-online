@@ -46,6 +46,9 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
         case getType(actions.removeFromCart):
             return state.filter(item => item.product.id !== action.payload)
 
+        case getType(actions.resetCart):
+            return []
+
         default:
             return state
     }
@@ -102,7 +105,7 @@ export default combineReducers({
     cart,
     favorite,
     user,
-    searchResult
+    searchResult,
 })
 
 // export function selectCounter(state: StoreState) {

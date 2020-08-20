@@ -10,6 +10,7 @@ export const removeFromCart = createAction("REMOVE_FROM_CART")<number>()
 export const signIn = createAction("SIGNIN")<User>()
 export const signOut = createAction("SIGNOUT")()
 export const setSearchResult = createAction("SET_SEARCH_RESULT")<Product[]>()
+export const resetCart = createAction("RESET_CART")()
 
 
 // export function increaseQty(id: number) {

@@ -19,9 +19,17 @@ export type User = {
     name: string
 }
 
+
 export type Cart = {
     products: Product[]
 }
+
+
+export type CartItem = {
+    product: Product
+    quantity: number
+}
+
 
 export async function getCategories(): Promise<Category[]> {
     const res = await fetch('/api/categories/');
@@ -54,4 +62,23 @@ export async function signUp(name: string, password: string): Promise<User | nul
         body: JSON.stringify({ name, password }),
     });
     return res.json()
+}
+
+export async function whoAmI(): Promise<User | null> {
+    const res = await fetch('/api/whoAmI');
+    return res.json();
+}
+
+export async function confirmOrder(cart: CartItem[]): Promise<number> {
+    const res = await fetch('/api/confirmOrder', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(cart.map(cartItem => ({product_id: cartItem.product.id, quantity: cartItem.quantity}))),
+    });
+
+    await new Promise(res => setTimeout(res, 3000))
+
+    return res.json()
+
+   
 }
