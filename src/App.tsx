@@ -57,6 +57,7 @@ function App() {
 
   return (
     <div className="App">
+
       <nav>
         <Link to="/">
           <div className="company-logo">
@@ -67,20 +68,22 @@ function App() {
         <p>Hi {user == null ? "guest" : user.name}!</p>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
-          <li><NavLink replace to="/cart">Cart</NavLink></li>
-          <li><NavLink replace to="/favorites">Favorites</NavLink></li>
-          <li><NavLink replace to="/settings">Settings</NavLink></li>
           {user === null ?
             <>
               <li><NavLink replace to="/register">Register</NavLink></li>
               <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
             </>
             :
-            <li onClick={onSignOut}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+            <>
+              <li><NavLink replace to="/cart">Cart</NavLink></li>
+              <li><NavLink replace to="/favorites">Favorites</NavLink></li>
+              <li><NavLink replace to="/settings">Settings</NavLink></li>
+              <li onClick={onSignOut}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+            </>
           }
-
         </ul>
       </nav>
+
       <main>
         <Switch>
           <Route exact path="/">
@@ -106,6 +109,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+
     </div >
   );
 }
