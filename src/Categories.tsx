@@ -16,9 +16,10 @@ export default function Categories() {
         }
     }, [])
 
+    
     return <div className="Categories">
         <div className="category-container">
-        {categories.map(c => <CategoryCard  key={c.id} category={c}/>)}
-        </div> 
+            {categories.map(c => <CategoryCard key={c.id} category={c} />)}
+        </div>
     </div>
 }

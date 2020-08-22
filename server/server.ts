@@ -38,12 +38,12 @@ async function openDB() {
 
 async function getCategories(req: Request) {
     const db = await openDB()
-    return await db.all('select c.id, c.name, c.image, c.color from Category c;')
+    return await db.all('select c.id, c.name, c.image, c.color from Category c')
 }
 
-async function getProducts() {
+async function getProducts({ query }: Request) {
     const db = await openDB()
-    return await db.all('select p.id, p.name, p.price, p.image, p.description, p.category_id from Product p;')
+    return await db.all('select * from Product p where p.category_id = ?', query.categoryId)
 }
 
 async function signIn(req: Request) {

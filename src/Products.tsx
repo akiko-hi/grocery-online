@@ -10,19 +10,20 @@ export default function Products() {
     const categoryId = useSelector(s => s.categoryId)
     const searchedProduct = useSelector(s => s.searchResult)
 
-
     useEffect(() => {
         load()
 
         async function load() {
-            const categories = await getProducts();
-            setProducts(categories);
+            if (categoryId === null) {
+                return
+            }
+            const filteredProducts = await getProducts(categoryId);
+            setProducts(filteredProducts);
         }
-    }, [])
+    }, [categoryId])
 
     return <div className="Products">
-        {searchedProduct.map(item => <ProductCard key={item.id} product={item}/>)}
-        {products.filter(product => product.category_id === categoryId)
-            .map(product => <ProductCard key={product.id} product={product}/>)}
+        {searchedProduct.map(item => <ProductCard key={item.id} product={item} />)}
+        {products.map(pro => <ProductCard key={pro.id} product={pro} />)}
     </div>
 }

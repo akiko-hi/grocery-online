@@ -8,7 +8,7 @@ export default function Home() {
     return <div className="Home">
         <Search />
         <div className="main_row">
-            <Categories />
+            <Categories/>
             <Products />
         </div>
     </div>

@@ -30,14 +30,13 @@ export type CartItem = {
     quantity: number
 }
 
-
 export async function getCategories(): Promise<Category[]> {
     const res = await fetch('/api/categories/');
     return res.json()
 }
 
-export async function getProducts(): Promise<Product[]> {
-    const res = await fetch('/api/products/');
+export async function getProducts(categoryId: number): Promise<Product[]> {
+    const res = await fetch(`/api/products/?categoryId=${encodeURIComponent(categoryId)}`);
     return res.json()
 }
 
