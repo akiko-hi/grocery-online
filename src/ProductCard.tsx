@@ -51,7 +51,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <div className="product_container">
 
-            <button className={"like " + (favorite.some(item => item.id === product.id) ? "liked" : "")}
+            <button className={"like" + (favorite.some(item => item.id === product.id) ? " liked" : "")}
                 onClick={() => addToFavorite(product)} ></button>
             <img className="product_image" src={"/images/" + product.image} alt="product" />
             <p className="product_name">{product.name}</p>
