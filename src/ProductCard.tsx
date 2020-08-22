@@ -4,7 +4,7 @@ import { Product, signIn } from './api';
 import { actions, useSelector } from './store';
 import './ProductCard.scss';
 import RegisterForm from './RegisterForm';
-import { useHistory } from 'react-router-dom';
+import Modal from './Modal';
 
 type ProductCardProps = {
     product: Product
@@ -17,16 +17,23 @@ export function ProductCard({ product }: ProductCardProps) {
     const favorite = useSelector(s => s.favorite)
     const dispatch = useDispatch()
     const [addedToCart, setAddedToCart] = useState(false)
-    const [signInMsg, setSignInMsg] = useState(false)
+    const [signInMsg, setSignInMsg] = useState<string>()
 
 
     function addToCart(product: Product) {
         if (user === null) {
-            setSignInMsg(true)
-
+            setSignInMsg("add products to your cart")
         } else {
             dispatch(actions.addToCart(product))
             setAddedToCart(true)
+        }
+    }
+
+    function addToFavorite(product: Product) {
+        if (user === null) {
+            setSignInMsg("favorite products")
+        } else {
+            dispatch(actions.addToFavorite(product))
         }
     }
 
@@ -36,7 +43,7 @@ export function ProductCard({ product }: ProductCardProps) {
             alert("login failed")
         } else {
             dispatch(actions.signIn(user))
-            setSignInMsg(false)
+            setSignInMsg(undefined)
         }
     }
 
@@ -45,7 +52,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="product_container">
 
             <button className={favorite.some(item => item.id === product.id) ? "like liked" : "like"}
-                onClick={() => dispatch(actions.addToFavorite(product))} ></button>
+                onClick={() => addToFavorite(product)} ></button>
             <img className="product_image" src={"/images/" + product.image} alt="product" />
             <p className="product_name">{product.name}</p>
             <p className="product_description">{product.description}</p>
@@ -54,19 +61,24 @@ export function ProductCard({ product }: ProductCardProps) {
 
         </div>
 
-        {addedToCart && <div onClick={() => setAddedToCart(!addedToCart)} className="modal-screen">
-            <div className="modal-content">
-                <p><span>{product.name}</span>: added to cart</p>
-                <p>Click the screen to go back</p>
-            </div>
-        </div>}
+        {addedToCart && <Modal className="centered" onClick={() => setAddedToCart(!addedToCart)} >
+            <p>{product.name + ": added to cart"}</p>
+            <p>click the screen to go back</p>
+        </Modal>}
 
+        {signInMsg && <Modal className="centered animated" onClick={() => setSignInMsg(undefined)}>
+            <p>Sign in to {signInMsg}</p>
+            <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+        </Modal>}
+
+
+        {/* 
         {signInMsg && <div onClick={() => setSignInMsg(!signInMsg)} className="modal-screen">
             <div className="modal-content signIn" onClick={e => e.stopPropagation()}>
                 <p>Sign in to add products to your cart</p>
                 <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
             </div>
-        </div>}
+        </div>} */}
 
     </div>
 }
