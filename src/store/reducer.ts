@@ -47,7 +47,9 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
             return state.filter(item => item.product.id !== action.payload)
 
         case getType(actions.resetCart):
+        case getType(actions.signOut):
             return []
+
 
         default:
             return state
@@ -66,6 +68,9 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
             }
 
             return [...state, action.payload]
+
+        case getType(actions.signOut):
+            return []
 
         default:
             return state
