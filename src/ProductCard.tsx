@@ -51,7 +51,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <div className="product_container">
 
-            <button className={favorite.some(item => item.id === product.id) ? "like liked" : "like"}
+            <button className={"like " + (favorite.some(item => item.id === product.id) ? "liked" : "")}
                 onClick={() => addToFavorite(product)} ></button>
             <img className="product_image" src={"/images/" + product.image} alt="product" />
             <p className="product_name">{product.name}</p>
@@ -71,14 +71,6 @@ export function ProductCard({ product }: ProductCardProps) {
             <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
         </Modal>}
 
-
-        {/* 
-        {signInMsg && <div onClick={() => setSignInMsg(!signInMsg)} className="modal-screen">
-            <div className="modal-content signIn" onClick={e => e.stopPropagation()}>
-                <p>Sign in to add products to your cart</p>
-                <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
-            </div>
-        </div>} */}
 
     </div>
 }
