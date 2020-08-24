@@ -61,12 +61,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
         </div>
 
-        {addedToCart && <Modal className="centered" onClick={() => setAddedToCart(!addedToCart)} >
+        {addedToCart && <Modal className="popup" onClick={() => setAddedToCart(!addedToCart)} >
             <p>{product.name + ": added to cart"}</p>
             <p>click the screen to go back</p>
         </Modal>}
 
-        {signInMsg && <Modal className="centered animated" onClick={() => setSignInMsg(undefined)}>
+        {signInMsg && <Modal className="popup animated" onClick={() => setSignInMsg(undefined)}>
             <p>Sign in to {signInMsg}</p>
             <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
         </Modal>}

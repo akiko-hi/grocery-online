@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { confirmOrder } from './api';
+import { confirmOrder, CartItem } from './api';
 import { getTotalPrice } from './cart_function';
 import './CheckOut.scss';
 import { useSelector, actions } from './store';
@@ -37,41 +37,39 @@ export default function CheckOut() {
             :
             <>
                 <h1>Summary</h1>
-                <div className="summary">
-                    <div className="table_container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cart.map(cartItem => <tr>
-                                    <td className="product_name">{cartItem.product.name}</td>
-                                    <td>${cartItem.product.price}</td>
-                                    <td>{cartItem.quantity}</td>
-                                    <td>${cartItem.product.price * cartItem.quantity}</td>
-                                </tr>)}
-                            </tbody>
-                            <tr>
-                                <th className="total_row" colSpan={3}>Total</th>
-                                <td className="total_price">${getTotalPrice(cart)}</td>
-                            </tr>
-                        </table>
+                <div className="outer_container">
+                    <div className="inner_container">
+                        <OrderTable cartItem={cart} />
                     </div>
-
                     <div className="confirm_section">
                         <p>Total ({cart.length} items): <span>${getTotalPrice(cart)}</span></p>
                         <button onClick={() => onConfirm()} className="confirm_btn">Confirm my order</button>
                     </div>
-
-
-
                 </div>
             </>
         }
+    </div >
+}
+
+type OrderTableProps = {
+    className?: string
+    cartItem: CartItem[]
+}
+
+export function OrderTable({ className, cartItem }: OrderTableProps) {
+    return <div className={"OrderTable " + (className ?? "")}>
+        <p>Product</p>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Subtotal</p>
+        {cartItem.map(item => <>
+            <div className="table_item_name">{item.product.name}</div>
+            <div>${item.product.price}</div>
+            <div>{item.quantity}</div>
+            <div className="sub_total">${item.product.price * item.quantity}</div>
+        </>)}
+        <div className="total_title">Total</div>
+        <div className="total_price">${getTotalPrice(cartItem)}</div>
     </div>
+
 }

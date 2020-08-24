@@ -50,6 +50,8 @@ function cart(state: CartItem[] = [], action: Actions): CartItem[] {
         case getType(actions.signOut):
             return []
 
+        case getType(actions.reorder):
+            return action.payload
 
         default:
             return state
@@ -105,12 +107,13 @@ function searchResult(state: Product[] = [], action: Actions): Product[] {
     }
 }
 
+
 export default combineReducers({
     categoryId,
     cart,
     favorite,
     user,
-    searchResult,
+    searchResult
 })
 
 // export function selectCounter(state: StoreState) {

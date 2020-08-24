@@ -1,0 +1,122 @@
+.OrderHistory {
+    display: flex;
+    flex-flow: column;
+    min-height: 0;
+    flex: 1;
+
+    .outer_container {
+        display: flex;
+        min-height: 0;
+        flex: 1;
+
+        .inner_container {
+            display: flex;
+            flex-flow: column;
+
+            .order_date_title {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                width: 15rem;
+            }
+
+            .order_date_scroll {
+                overflow-x: hidden;
+                overflow-y: auto;
+                scrollbar-width: none; 
+
+                &::-webkit-scrollbar {
+                    display: none; 
+                }
+
+                .loading {
+                    text-align: center;
+                }
+            }
+
+            .order_date {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem 1rem;
+                position: relative;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgba(255, 255, 255, 0.719);
+                }
+
+                &::before {
+                    position: absolute;
+                    content: "";
+                    transform: translateX(-100%);
+                    transition: transform 300ms ease-out;
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                }
+
+                &.active::before {
+                    background: yellowgreen;
+                    transform: translateX(0);
+                }
+
+                > * {
+                    z-index: 1;
+                }
+
+                .date {
+                    white-space: nowrap;
+                }
+
+                .arrow {
+                    height: 2rem;
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+
+        .order_detail {
+            display: flex;
+            flex-flow: column;
+            align-self: stretch;
+            flex: 1;
+            overflow: auto;
+            background: white;
+            border-radius: 5px;
+
+            .reorder_btn {
+                align-self: flex-end;
+                padding: 0.5rem 2rem;
+                margin: 1rem 1rem 0 1rem;
+                border-radius: 5px;
+                background: lightgray;
+                border: none;
+                box-shadow: 0 3px 1px gray;
+                position: relative;
+                font-size: 1.1rem;
+
+                &:active {
+                    top: 3px;
+                    box-shadow: none;
+                }
+
+                &:hover {
+                    background: lightcoral;
+                }
+
+            }
+
+            .order_table_wrapper {
+                padding: 0 1rem 1rem 1rem;
+            }
+
+            .order_table {
+                margin: 0;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

@@ -21,6 +21,7 @@ app.post('/api/signOut', action(signOut));
 app.post('/api/signUp', action(signUp));
 app.get('/api/whoAmI', action(whoAmI));
 app.post('/api/confirmOrder', action(confirmOrder));
+app.get('/api/order_history/', action(getOrderHistoty));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -58,6 +59,61 @@ async function signIn(req: Request) {
         req.session = null
         return null
     }
+}
+
+type OrderHistoryRow = {
+    order_id: number
+    date: number
+    quantity: number
+} & Product
+
+type Order = {
+    order_id: number
+    date: number
+    items: { 
+        product: Product
+        quantity: number
+     }[]
+}
+
+type Product = {
+    id: number
+    name: string
+    price: number
+    image: string
+    description: string
+    category_id: number
+}
+
+async function getOrderHistoty(req: Request) {
+    const userId = req.session!.userId
+    const db = await openDB()
+    const arr: OrderHistoryRow[] = await db.all(`
+        select o.id order_id, o.date, oi.quantity, p.*
+        from "Order" o
+        join OrderItem oi on o.id = oi.order_id
+        join Product p on oi.product_id = p.id
+        where o.user_id = ?
+        order BY o.id
+    `, userId)
+
+    const newArr = [];
+    let newItem: Order = { order_id: arr[0].order_id, date: arr[0].date, items: [] }
+
+    for (let i = 0; i < arr.length; i++) {
+        const { order_id, date, quantity, ...product } = arr[i]
+        if (newItem.order_id !== order_id) {
+            newArr.push(newItem)
+            newItem = { order_id: order_id, date: date, items: [] }
+        }
+
+        newItem.items.push({
+            product: product,
+            quantity: quantity
+        })
+    }
+    newArr.push(newItem)
+    return newArr
 }
 
 async function signOut(req: Request) {

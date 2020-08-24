@@ -11,6 +11,7 @@ import { useSelector, actions } from './store';
 import { signIn, signUp, whoAmI, signOut } from './api';
 import { useDispatch } from 'react-redux';
 import CheckOut from './CheckOut';
+import OrderHistory from './OrderHistory';
 
 
 function App() {
@@ -77,7 +78,7 @@ function App() {
             <>
               <li><NavLink replace to="/cart">Cart</NavLink></li>
               <li><NavLink replace to="/favorites">Favorites</NavLink></li>
-              <li><NavLink replace to="/settings">Settings</NavLink></li>
+              <li><NavLink replace to="/order_history">Order History</NavLink></li>
               <li onClick={onSignOut}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
             </>
           }
@@ -106,6 +107,9 @@ function App() {
           </Route>
           <Route path="/sign_in">
             <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+          </Route>
+          <Route path='/order_history'>
+          <OrderHistory/>
           </Route>
         </Switch>
       </main>

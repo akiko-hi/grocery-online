@@ -76,7 +76,8 @@
         border-radius: 5px;
     }
 
-    .centered {
+    .popup {
+        user-select: none;
         p {
             text-align: center;
         }

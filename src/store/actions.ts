@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions'
-import { Product, User } from '../api'
+import { Product, User, CartItem } from '../api'
 
 export const pickCategory = createAction("PICK_CATEGORY")<number>()
 export const addToCart = createAction("ADD_TO_CART")<Product>()
@@ -11,6 +11,7 @@ export const signIn = createAction("SIGNIN")<User>()
 export const signOut = createAction("SIGNOUT")()
 export const setSearchResult = createAction("SET_SEARCH_RESULT")<Product[]>()
 export const resetCart = createAction("RESET_CART")()
+export const reorder = createAction("REORDER")<CartItem[]>()
 
 
 // export function increaseQty(id: number) {

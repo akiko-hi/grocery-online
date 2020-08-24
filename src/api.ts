@@ -78,11 +78,21 @@ export async function confirmOrder(cart: CartItem[]): Promise<number> {
     const res = await fetch('/api/confirmOrder', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(cart.map(cartItem => ({product_id: cartItem.product.id, quantity: cartItem.quantity}))),
+        body: JSON.stringify(cart.map(cartItem => ({ product_id: cartItem.product.id, quantity: cartItem.quantity }))),
     });
 
     await new Promise(res => setTimeout(res, 3000))
 
     return res.json()
-  
+}
+
+export type Order = {
+    order_id: number
+    date: number
+    items: CartItem[]
+}
+
+export async function getOrderHistory(): Promise<Order[]> {
+    const res = await fetch('/api/order_history/')
+    return res.json()
 }
