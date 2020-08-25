@@ -8,6 +8,11 @@
     display: flex;
     padding: 0.5rem;
     background-color: white;
+    align-items: center;
+
+    .nav_title {
+      display: flex;
+    }
 
     .company-logo {
       display: flex;
@@ -21,7 +26,7 @@
       }
 
       .logo {
-        height: 5rem;
+        height: 4rem;
       }
     }
 
@@ -30,16 +35,81 @@
       align-items: center;
     }
 
-    ul {
+    > ul {
       display: flex;
       flex-flow: row;
       flex: 1;
       justify-content: flex-end;
 
-      li {
+      > li {
         list-style: none;
+        display: flex;
 
-        a {
+        &.account_li {
+          position: relative;
+          align-items: center;
+          background: white;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          .account_user {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            padding: 0 1rem 0 0;
+          }
+
+          .account_img {
+            height: 2.5rem;
+          }
+            
+            .account_down_arrow {
+              height: 1rem;
+              margin: 0 .5rem 0 1rem;
+            }
+
+          @keyframes slideIn {
+            0% {
+              transform: translateY(-1rem);
+              opacity: 0;
+            }
+            100% {
+              transform: translateY(0rem);
+              opacity: 1;
+            }
+          }
+
+          .account_dropdown {
+            position: absolute;
+            z-index: 1;
+            background: white;
+            display: flex;
+            flex-flow: column;
+            top: 100%;
+            right: 0;
+            padding: 0;
+            border-radius: 5px;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.418);
+            animation: slideIn 300ms ease-out;
+
+            li {
+              display: flex;
+              align-items: center;
+              font-size: 1.2rem;
+              white-space: nowrap;
+              list-style: none;
+              padding: 1rem 1.5rem 1rem 1rem;
+
+              &:hover {
+                background: rgba(153, 205, 50, 0.705);
+              }
+            }
+          }
+        }
+
+        > a {
           text-decoration: none;
           color: inherit;
           font-size: 1.5rem;
@@ -47,6 +117,8 @@
           padding: 0.5rem 1rem;
           transition: border-bottom 200ms;
           position: relative;
+          background: none;
+          border: none;
 
           &::after {
             content: "";
@@ -84,7 +156,8 @@
     min-height: 0;
     flex: 1;
     padding-top: 1.5rem;
+    position: relative;
   }
 
-  transition: background-color ease-in 200ms;
+  // transition: background-color ease-in 200ms;
 }

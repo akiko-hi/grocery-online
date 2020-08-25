@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Switch, useHistory, Link } from 'react-router-dom';
 import './App.scss';
 import Cart from './Cart';
@@ -12,6 +12,10 @@ import { signIn, signUp, whoAmI, signOut } from './api';
 import { useDispatch } from 'react-redux';
 import CheckOut from './CheckOut';
 import OrderHistory from './OrderHistory';
+import DownArrow from './images/down-arrow.png';
+import Account from './images/account.png';
+import Setting from './images/setting.png';
+import SignOut from './images/sign_out.png';
 
 
 function App() {
@@ -19,6 +23,7 @@ function App() {
   const user = useSelector(s => s.user)
   const dispatch = useDispatch()
   const history = useHistory()
+  const [showAccount, setShowAccount] = useState(false)
 
   useEffect(() => {
     load()
@@ -54,10 +59,11 @@ function App() {
   async function onSignOut() {
     dispatch(actions.signOut())
     await signOut()
+    setShowAccount(false)
   }
 
   return (
-    <div className="App">
+    <div className="App" onClick={() => setShowAccount(false)}>
 
       <nav>
         <Link to="/">
@@ -69,6 +75,7 @@ function App() {
         <p>Hi {user == null ? "guest" : user.name}!</p>
         <ul>
           <li><NavLink replace exact to="/">Home</NavLink></li>
+
           {user === null ?
             <>
               <li><NavLink replace to="/register">Register</NavLink></li>
@@ -79,9 +86,22 @@ function App() {
               <li><NavLink replace to="/cart">Cart</NavLink></li>
               <li><NavLink replace to="/favorites">Favorites</NavLink></li>
               <li><NavLink replace to="/order_history">Order History</NavLink></li>
-              <li onClick={onSignOut}><NavLink replace to="/sign_in">Sign Out</NavLink></li>
+
+              <li className="account_li" onClick={e => { setShowAccount(!showAccount); e.stopPropagation() }}>
+                <div className="account_user">
+                  <img className="account_img" src={Account} alt="account" />
+                  {user.name}
+                  <img className="account_down_arrow" src={DownArrow} alt="down arrow" />
+                </div>
+                {showAccount && <ul className="account_dropdown">
+                  <li><img className="account_img" src={Setting} alt="" />Account Setting</li>
+                  <li onClick={onSignOut}><img className="account_img" src={SignOut} alt="" /><Link to='/sign_in'>Sign Out</Link></li>
+                </ul>}
+              </li>
+
             </>
           }
+
         </ul>
       </nav>
 
@@ -109,7 +129,7 @@ function App() {
             <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
           </Route>
           <Route path='/order_history'>
-          <OrderHistory/>
+            <OrderHistory />
           </Route>
         </Switch>
       </main>
