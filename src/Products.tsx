@@ -15,6 +15,7 @@ export default function Products() {
 
         async function load() {
             if (categoryId === null) {
+                setProducts([])
                 return
             }
             const filteredProducts = await getProducts(categoryId);
