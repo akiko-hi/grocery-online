@@ -95,13 +95,20 @@
                     font-size: 1.2rem;
                     border: none;
                     padding: 1rem;
-                    background: orange;
                     border-radius: 5px;
-                    background: green;
+                    background: rgba(2, 163, 2, 0.795);
                     color: white;
+                    box-shadow: 0 3px 1px darkgreen;
+                    position: relative;
 
                     &:hover {
                         cursor: pointer;
+                    }
+
+                    &:active {
+                        box-shadow: none;
+                        top: 3px;
+
                     }
                 }
 
@@ -146,9 +153,6 @@
                 background: white;
             }
 
-            &:active {
-                border: 1px solid red;
-            }
         }
     }
 }

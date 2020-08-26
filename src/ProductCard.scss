@@ -68,12 +68,16 @@
 
     .add_to_cart {
         border: none;
-        background: green;
+        background: rgba(0, 128, 0, 0.842);
         color: white;
         padding: 0.5rem 0.75rem;
         font-size: 1rem;
         width: 100%;
         border-radius: 5px;
+
+        &:hover {
+            background: green
+        }
     }
 
     .popup {

@@ -49,6 +49,7 @@
           position: relative;
           align-items: center;
           background: white;
+          margin-left: 0.5rem;
 
           &:hover {
             cursor: pointer;
@@ -64,11 +65,11 @@
           .account_img {
             height: 2.5rem;
           }
-            
-            .account_down_arrow {
-              height: 1rem;
-              margin: 0 .5rem 0 1rem;
-            }
+
+          .account_down_arrow {
+            height: 1rem;
+            margin: 0 0.5rem 0 1rem;
+          }
 
           @keyframes slideIn {
             0% {
@@ -119,6 +120,7 @@
           position: relative;
           background: none;
           border: none;
+          outline: none;
 
           &::after {
             content: "";

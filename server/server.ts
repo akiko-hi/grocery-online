@@ -8,7 +8,7 @@ import { Database } from 'sqlite3';
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cookieSession({ secret: "Akiko123" }));
+app.use(cookieSession({ secret: "Akiko123", sameSite: "none" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")))
@@ -73,10 +73,10 @@ type OrderHistoryRow = {
 type Order = {
     order_id: number
     date: number
-    items: { 
+    items: {
         product: Product
         quantity: number
-     }[]
+    }[]
 }
 
 type Product = {
