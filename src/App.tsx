@@ -8,7 +8,7 @@ import logo from './images/logo.png';
 import RegisterForm from './RegisterForm';
 import Settings from './Settings';
 import { useSelector, actions } from './store';
-import { signIn, signUp, whoAmI, signOut } from './api';
+import { signIn, signUp, whoAmI, signOut, getFavoriteItems, Product } from './api';
 import { useDispatch } from 'react-redux';
 import CheckOut from './CheckOut';
 import OrderHistory from './OrderHistory';
@@ -16,7 +16,6 @@ import DownArrow from './images/down-arrow.png';
 import Account from './images/account.png';
 import Setting from './images/setting.png';
 import SignOut from './images/sign_out.png';
-
 
 function App() {
 
@@ -36,6 +35,18 @@ function App() {
     }
   }, [dispatch])
 
+  useEffect(() => {
+    load()
+
+    async function load() {
+      if(user === null) {
+        return
+      }
+      const res = await getFavoriteItems()
+      dispatch(actions.loadFavoriteItems(res))
+    }
+  }, [dispatch, user])
+
   async function onSignIn(name: string, password: string) {
     const user = await signIn(name, password)
     if (user === null) {
@@ -43,6 +54,7 @@ function App() {
     } else {
       dispatch(actions.signIn(user))
       history.replace("/")
+      
     }
   }
 

@@ -22,6 +22,9 @@ app.post('/api/signUp', action(signUp));
 app.get('/api/whoAmI', action(whoAmI));
 app.post('/api/confirmOrder', action(confirmOrder));
 app.get('/api/order_history/', action(getOrderHistoty));
+app.post('/api/addFavoriteItem', action(addFavoriteItem));
+app.post('/api/removeFavoriteItem', action(removeFavoriteItem));
+app.get('/api/getFavoriteItems', action(getFavoriteItems));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -161,4 +164,35 @@ async function confirmOrder(req: Request) {
         db.run('insert into OrderItem (order_id, product_id, quantity) values (?, ?, ?);', res.lastID, item.product_id, item.quantity)
     }
     return res.lastID
+}
+
+
+async function addFavoriteItem(req: Request) {
+    const userId = req.session!.userId
+    if (!userId) { return }
+
+    const favoriteItem: { id: number } = req.body
+    const db = await openDB()
+    await db.run('insert into Favorite (user_id, product_id) values (?, ?)', userId, favoriteItem.id)
+}
+
+async function removeFavoriteItem(req: Request) {
+    const userId = req.session!.userId
+    if (!userId) { return }
+
+    const favoriteItem: { id: number } = req.body
+    const db = await openDB()
+    await db.run('delete from Favorite where user_id = ? and product_id = ?', userId, favoriteItem.id)
+}
+
+async function getFavoriteItems(req: Request) {
+    const userId = req.session!.userId
+    if (!userId) { return }
+
+    const db = await openDB()
+    return await db.all(`
+    select p.id, p.name, p.price, p.image, p.description, p.category_id from Product p 
+    join Favorite f on p.id = f.product_id
+    where f.user_id = ?`, userId
+    );
 }

@@ -74,6 +74,9 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
         case getType(actions.signOut):
             return []
 
+        case getType(actions.loadFavoriteItems):
+            return action.payload
+
         default:
             return state
     }
