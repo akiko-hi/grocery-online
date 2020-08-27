@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector } from './store';
+import React from 'react';
 import { ProductCard } from './ProductCard';
+import { useSelector } from './store';
 import './Favorites.scss';
 import EmptyFavorite from './images/empty_favorite.svg';
 
 export default function Favorites() {
 
     const favorite = useSelector(s => s.favorite)
-
 
     return <div className="Favorites">
 
@@ -24,5 +23,6 @@ export default function Favorites() {
                 </div>
             </>
         }
+
     </div>
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Product, signIn, addFavoriteItem, removeFavoriteItem } from './api';
+import { signIn, addFavoriteItem, removeFavoriteItem } from './api';
 import { actions, useSelector } from './store';
-import './ProductCard.scss';
+import { Product } from './types';
 import RegisterForm from './RegisterForm';
 import Modal from './Modal';
+import './ProductCard.scss';
 
 type ProductCardProps = {
     product: Product
@@ -12,13 +13,11 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
 
-
     const user = useSelector(s => s.user)
     const favorite = useSelector(s => s.favorite)
     const dispatch = useDispatch()
     const [addedToCart, setAddedToCart] = useState(false)
     const [signInMsg, setSignInMsg] = useState<string>()
-
 
     function addToCart(product: Product) {
         if (user === null) {
@@ -59,28 +58,29 @@ export function ProductCard({ product }: ProductCardProps) {
 
             <button className={"like" + (favorite.some(item => item.id === product.id) ? " liked" : "")}
                 onClick={() => addToFavorite(product)}></button>
-        <img className="product_image" src={"/images/" + product.image} alt="product" />
-        <p className="product_name">{product.name}</p>
-        <p className="product_description">{product.description}</p>
-        <p className="product_price">${product.price}</p>
-        <button className="add_to_cart" onClick={() => addToCart(product)}>Add to cart</button>
+            <img className="product_image" src={"/images/" + product.image} alt="product" />
+            <p className="product_name">{product.name}</p>
+            <p className="product_description">{product.description}</p>
+            <p className="product_price">${product.price}</p>
+            <button className="add_to_cart" onClick={() => addToCart(product)}>Add to cart</button>
 
-    </div>
+        </div>
 
-    {
-        addedToCart && <Modal className="popup" onClick={() => setAddedToCart(!addedToCart)} >
-            <p>{product.name + ": added to cart"}</p>
-            <p>click the screen to go back</p>
-        </Modal>
-    }
+        {addedToCart &&
 
-    {
-        signInMsg && <Modal className="popup animated" onClick={() => setSignInMsg(undefined)}>
-            <p>Sign in to {signInMsg}</p>
-            <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
-        </Modal>
-    }
+            <Modal className="popup" onClick={() => setAddedToCart(!addedToCart)} >
+                <p>{product.name + ": added to cart"}</p>
+                <p>click the screen to go back</p>
+            </Modal>
+        }
 
+        {signInMsg &&
+
+            <Modal className="popup animated" onClick={() => setSignInMsg(undefined)}>
+                <p>Sign in to {signInMsg}</p>
+                <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+            </Modal>
+        }
 
     </div >
 }

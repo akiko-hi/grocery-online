@@ -1,5 +1,5 @@
 import { createAction } from 'typesafe-actions'
-import { Product, User, CartItem } from '../api'
+import { Product, User, CartItem } from '../types'
 
 export const pickCategory = createAction("PICK_CATEGORY")<number>()
 export const addToCart = createAction("ADD_TO_CART")<Product>()

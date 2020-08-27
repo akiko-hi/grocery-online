@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getProducts, Product } from './api';
+import { getProducts } from './api';
+import { Product } from './types';
+import { useSelector } from './store';
 import { ProductCard } from './ProductCard';
 import './Products.scss';
-import { useSelector } from './store';
 
 export default function Products() {
 
@@ -24,7 +25,9 @@ export default function Products() {
     }, [categoryId])
 
     return <div className="Products">
+
         {searchedProduct.map(item => <ProductCard key={item.id} product={item} />)}
         {products.map(pro => <ProductCard key={pro.id} product={pro} />)}
+
     </div>
 }

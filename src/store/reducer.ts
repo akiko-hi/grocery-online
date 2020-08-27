@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { getType } from "typesafe-actions";
 import { Actions } from ".";
 import * as actions from "./actions";
-import { Product, User } from "../api";
+import { Product, User } from "../types";
 
 function categoryId(state: number | null = null, action: Actions): number | null {
 
@@ -118,12 +118,3 @@ export default combineReducers({
     user,
     searchResult
 })
-
-// export function selectCounter(state: StoreState) {
-//     return state.counter
-// }
-
-// export function selectCart(state: StoreState) {
-//     return state.cart
-// }
-// }

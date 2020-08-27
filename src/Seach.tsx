@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchProducts } from './api';
-import search from './images/search-enter.png';
-import './Search.scss';
 import { actions } from './store';
+import './Search.scss';
+import search from './images/search-enter.png';
 
 
 export default function Search() {
@@ -29,5 +29,6 @@ export default function Search() {
                 <img className="searchImg" src={search} alt="search button" />
             </button>
         </div>
+
     </form>
 }

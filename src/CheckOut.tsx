@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { confirmOrder, CartItem } from './api';
-import { getTotalPrice } from './cart_function';
-import './CheckOut.scss';
-import { useSelector, actions } from './store';
 import { useDispatch } from 'react-redux';
+import { confirmOrder } from './api';
+import { getTotalPrice } from './cart_function';
+import { useSelector, actions } from './store';
+import { CartItem } from './types';
+import './CheckOut.scss';
 import { ReactComponent as Spinner } from './images/spinner.svg'
 import Confirmed from './images/confirmed_order.svg';
 
@@ -48,7 +49,7 @@ export default function CheckOut() {
                 </div>
             </>
         }
-    </div >
+    </div>
 }
 
 type OrderTableProps = {
@@ -58,6 +59,7 @@ type OrderTableProps = {
 
 export function OrderTable({ className, cartItem }: OrderTableProps) {
     return <div className={"OrderTable " + (className ?? "")}>
+
         <p>Product</p>
         <p>Price</p>
         <p>Quantity</p>
@@ -70,6 +72,6 @@ export function OrderTable({ className, cartItem }: OrderTableProps) {
         </>)}
         <div className="total_title">Total</div>
         <div className="total_price">${getTotalPrice(cartItem)}</div>
-    </div>
 
+    </div>
 }
