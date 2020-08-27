@@ -26,6 +26,8 @@ app.post('/api/addFavoriteItem', action(addFavoriteItem));
 app.post('/api/removeFavoriteItem', action(removeFavoriteItem));
 app.get('/api/getFavoriteItems', action(getFavoriteItems));
 
+app.get('/api/generate', action(createMoreProducts));
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 function action(func: (req: Request) => Promise<any>) {
@@ -33,6 +35,41 @@ function action(func: (req: Request) => Promise<any>) {
         func(req)
             .then(x => res.json(x))
             .catch(err => res.status(500).send(err.message))
+    }
+}
+
+
+function getRandomNum(min: number, max: number): number {
+    return Math.floor((Math.random() * (max - min)) + min)
+}
+
+async function createMoreProducts() {
+
+    const fruits = ["Apple", "Banana", "Orange", "Kiwi", "Pear"]
+    const randomWords = ["Amazing", "Tasty", "Great"]
+    const newArr = []
+
+    for (let word of randomWords) {
+        for (let item of fruits) {
+            newArr.push(word + " " + item)
+        }
+    }
+
+    const image = ["apple.png", "banana.png", "orange.png", "kiwi.png", "pear.png"]
+
+    const newObj = newArr.map(item => ({
+        name: item,
+        price: getRandomNum(3, 8),
+        image: image[getRandomNum(0, 5)],
+        description: `Fresh ${item} from our local orchard.`,
+        category_id: 1
+    }))
+    const db = await openDB()
+
+    for (const obj of newObj) {
+        await db.run(`
+    insert into Product (name, price, image, description, category_id)
+    values (?, ?, ?, ?, ?)`, obj.name, obj.price, obj.image, obj.description, obj.category_id)
     }
 }
 
