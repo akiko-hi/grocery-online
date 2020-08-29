@@ -46,8 +46,8 @@ export async function getOrderHistory(): Promise<Order[]> {
 }
 
 //products
-export async function getProducts(categoryId: number): Promise<Product[]> {
-    const res = await fetch(`/api/products/?categoryId=${encodeURIComponent(categoryId)}`);
+export async function getProducts(categoryId: number, skip: number, limit:number): Promise<Product[]> {
+    const res = await fetch(`/api/products/?categoryId=${categoryId}&skip=${skip}&limit=${limit}`);
     return res.json()
 }
 

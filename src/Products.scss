@@ -1,8 +1,25 @@
 .Products {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-    padding: 0 0.25rem;
     flex: 2;
     overflow: auto;
+  
+
+    .outer_wrapper {
+        padding: 0 0.25rem 0.5rem 0.25rem;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+
+        .load_btn {
+            margin: 0.5rem auto;
+            padding: 0.5rem 10rem;
+            border: none;
+            background: yellowgreen;
+            border-radius: 5px;
+        }
+        .products_wrapper {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: flex-start;
+        }
+    }
 }

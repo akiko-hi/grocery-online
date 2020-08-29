@@ -4,7 +4,7 @@ import { Request } from 'express';
 
 export async function getProducts({ query }: Request) {
     const db = await openDB()
-    return await db.all('select * from Product p where p.category_id = ?', query.categoryId)
+    return await db.all('select * from Product p where p.category_id = ? order by id limit ?, ?', query.categoryId, query.skip,query.limit)
 }
 
 export async function searchProducts({ query }: Request) {
