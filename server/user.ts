@@ -6,12 +6,14 @@ export async function signOut(req: Request) {
     req.session = null
 }
 
-export async function signUp({ body }: Request) {
+export async function signUp(req: Request) {
     const db = await openDB()
+    const { name, password } = req.body
 
     try {
-        await db.run('insert into User (name, password) values (?, ?)', body.name, body.password)
-        const user = await db.get('select u.name from User u where u.name = ?', body.name)
+        await db.run('insert into User (name, password) values (?, ?)', name, password)
+        const user = await db.get('select u.id, u.name from User u where u.name = ?', name)
+        req.session!.userId = user.id
         return user
     } catch (e) {
         return null

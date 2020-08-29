@@ -22,7 +22,7 @@ function action(func: (req: Request) => Promise<any>) {
 }
 
 //server configuration
-app.use(cookieSession({ secret: "Akiko123", sameSite: "none" }));
+app.use(cookieSession({ secret: "Akiko123", sameSite: "lax" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")))
