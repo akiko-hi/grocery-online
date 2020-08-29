@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getProducts } from './api';
 import { Product } from './types';
 import { useSelector } from './store';
 import { ProductCard } from './ProductCard';
 import './Products.scss';
 
-let loading = false
 
 export default function Products() {
-
     const [products, setProducts] = useState<Product[]>([])
     const categoryId = useSelector(s => s.categoryId)
     const searchedProduct = useSelector(s => s.searchResult)
     const [next, setNext] = useState(0);
     const itemsPerPage = 8;
     const [haveMore, setHaveMore] = useState(false)
+    const loading = useRef(false)
 
     useEffect(() => {
         setNext(0)
@@ -39,24 +38,32 @@ export default function Products() {
             const moreProducts = await getProducts(categoryId, next, itemsPerPage)
             if (canceled) { return }
 
-            if (moreProducts.length < itemsPerPage) {
-                setHaveMore(false)
-            } else {
-                setHaveMore(true)
-            }
+            setHaveMore(moreProducts.length === itemsPerPage)
             setProducts(p => [...p, ...moreProducts])
+            loading.current = false
         }
 
     }, [categoryId, next])
 
-    return <div className="Products">
+    function onScroll({ currentTarget: { scrollTop, scrollHeight, clientHeight } }: React.SyntheticEvent) {
+
+        if (scrollTop === 0) { return }
+        const shouldLoad = scrollHeight - scrollTop - clientHeight < clientHeight
+
+        if (!loading.current && shouldLoad && haveMore && categoryId !== null) {
+            loading.current = true
+            setNext(next + itemsPerPage)
+        }
+    }
+
+    return <div className="Products" onScroll={onScroll}>
+
 
         <div className="outer_wrapper">
             <div className="products_wrapper">
                 {searchedProduct.map(item => <ProductCard key={item.id} product={item} />)}
                 {products.map(pro => <ProductCard key={pro.id} product={pro} />)}
             </div>
-            {haveMore && categoryId !== null && <button className="load_btn" onClick={() => setNext(next + itemsPerPage)}>Load More</button>}
         </div>
 
     </div>
