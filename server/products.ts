@@ -2,9 +2,9 @@ import { openDB } from './db';
 import { Request } from 'express';
 
 
-export async function getProducts({ query }: Request) {
+export async function getProducts({ query: { categoryId, skip, limit} }: Request) {
     const db = await openDB()
-    return await db.all('select * from Product p where p.category_id = ? order by id limit ?, ?', query.categoryId, query.skip,query.limit)
+    return await db.all('select * from Product p where p.category_id = ? order by id limit ?, ?', categoryId, skip, limit)
 }
 
 export async function searchProducts({ query }: Request) {

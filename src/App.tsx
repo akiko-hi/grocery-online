@@ -16,6 +16,7 @@ import DownArrow from './images/down-arrow.png';
 import Account from './images/account.png';
 import Setting from './images/setting.png';
 import SignOut from './images/sign_out.png';
+import Menu from './images/menu.png';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
   const dispatch = useDispatch()
   const history = useHistory()
   const [showAccount, setShowAccount] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
 
   useEffect(() => {
     load()
@@ -39,7 +41,7 @@ function App() {
     load()
 
     async function load() {
-      if(user === null) {
+      if (user === null) {
         return
       }
       const res = await getFavoriteItems()
@@ -54,7 +56,7 @@ function App() {
     } else {
       dispatch(actions.signIn(user))
       history.replace("/")
-      
+
     }
   }
 
@@ -74,18 +76,37 @@ function App() {
     setShowAccount(false)
   }
 
+  function onAppClick() {
+    setShowAccount(false)
+    setShowMenu(false)
+  }
+
+  function onMenuClick(e: React.SyntheticEvent) {
+    setShowMenu(!showMenu)
+    e.stopPropagation()
+    setShowAccount(false)
+  }
+
   return (
-    <div className="App" onClick={() => setShowAccount(false)}>
+    <div className="App" onClick={onAppClick}>
 
       <nav>
-        <Link to="/">
-          <div className="company-logo">
-            <div className="name">COUNTUP</div>
-            <img className="logo" src={logo} alt="logo" />
-          </div>
-        </Link>
+        <div className="nav_title">
+          <button onClick={onMenuClick} className="menu_mobile">
+            <img src={Menu} alt="menu" />
+          </button>
+          <Link to="/">
+            <div className="company-logo">
+              <div className="name">COUNTUP</div>
+              <img className="logo" src={logo} alt="logo" />
+            </div>
+          </Link>
+        </div>
+
         <p>Hi {user == null ? "guest" : user.name}!</p>
-        <ul>
+
+        <ul className={showMenu ? " active" : ""}>
+
           <li><NavLink replace exact to="/">Home</NavLink></li>
 
           {user === null ?
