@@ -13,6 +13,7 @@ export const setSearchResult = createAction("SET_SEARCH_RESULT")<Product[]>()
 export const resetCart = createAction("RESET_CART")()
 export const reorder = createAction("REORDER")<CartItem[]>()
 export const loadFavoriteItems = createAction('LOAD_FAVORITE_ITEMS')<Product[]>()
+export const removeCategoryId = createAction('REMOVE_CATEGORY_ID')()
 
 
 // export function increaseQty(id: number) {

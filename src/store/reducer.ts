@@ -13,6 +13,12 @@ function categoryId(state: number | null = null, action: Actions): number | null
         case getType(actions.setSearchResult):
             return null
 
+        case getType(actions.signOut):
+        case getType(actions.signIn):
+        case getType(actions.removeCategoryId):
+            return null
+
+
         default:
             return state
     }
