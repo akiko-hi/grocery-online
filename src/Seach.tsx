@@ -5,8 +5,11 @@ import { actions } from './store';
 import './Search.scss';
 import search from './images/search-enter.png';
 
+type SearchProps = {
+    className?: string
+}
 
-export default function Search() {
+export default function Search({ className }: SearchProps) {
 
     const dispatch = useDispatch()
     const [searchWord, setSearhWord] = useState("")
@@ -21,7 +24,7 @@ export default function Search() {
         }
     }
 
-    return <form className="Search" onSubmit={onSubmit}>
+    return <form className={"Search " + (className ?? "")} onSubmit={onSubmit}>
 
         <div className="input-container">
             <input onChange={e => setSearhWord(e.currentTarget.value)} value={searchWord} autoFocus />

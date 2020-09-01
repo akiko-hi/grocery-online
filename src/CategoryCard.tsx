@@ -15,7 +15,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
     const selectedCategory = useSelector(s => s.categoryId)
 
     return <div className={selectedCategory === category.id ? "CategoryCard active" : "CategoryCard"}
-        onClick={() => dispatch(actions.pickCategory(category.id))}>
+        onClick={() =>  dispatch(actions.pickCategory(category.id))}>
 
         <p style={{ background: category.color }}>{category.name}</p>
         <img src={"/images/" + category.image} alt="product" />

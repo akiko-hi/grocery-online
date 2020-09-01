@@ -7,10 +7,10 @@ import './Home.scss'
 export default function Home() {
     return <div className="Home">
         
-        <Search />
+        <Search className="search" />
 
-        <div className="main_row">
-            <Categories/>
+        <div className="main_page">
+            <Categories />
             <Products />
         </div>
 

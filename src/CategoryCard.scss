@@ -31,4 +31,40 @@
         align-items: center;
         justify-content: center;
     }
+
+    @media (max-width: 600px) {
+        flex-flow: column;
+        flex: 1;
+        min-width: 0;
+        align-items: center;
+        box-shadow: none;
+        transition: none;
+        transform: none;
+        margin-bottom: 0;
+        width: auto;
+        align-self: stretch;
+        margin: 1px;
+
+        &:hover {
+            transform: none;
+        }
+
+        &.active {
+            box-shadow: 0 0 3px #0004;
+        }
+
+        p {
+            order: 1;
+            padding: 1rem;
+            align-self: stretch;
+        }
+    }
+
+    @media (max-width: 600px) {
+        &:not(.active) {
+            p {
+                background: none !important;
+            }
+        }
+    }
 }

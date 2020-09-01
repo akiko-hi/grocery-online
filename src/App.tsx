@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, Route, Switch, useHistory, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector, actions } from './store';
-import { signIn, signUp, whoAmI, signOut, getFavoriteItems } from './api';
+import { Link, NavLink, Route, Switch, useHistory } from 'react-router-dom';
+import { getFavoriteItems, signIn, signOut, signUp, whoAmI } from './api';
 import './App.scss';
-import Home from './Home';
 import Cart from './Cart';
 import CheckOut from './CheckOut';
 import Favorites from './Favorites';
-import Settings from './Settings';
-import RegisterForm from './RegisterForm';
-import OrderHistory from './OrderHistory';
-import logo from './images/logo.png';
-import DownArrow from './images/down-arrow.png';
+import Home from './Home';
 import Account from './images/account.png';
+import DownArrow from './images/down-arrow.png';
+import logo from './images/logo.png';
+import Menu from './images/menu.png';
 import Setting from './images/setting.png';
 import SignOut from './images/sign_out.png';
-import Menu from './images/menu.png';
+import HomeIcon from './images/home_icon.png';
+import RegisterIcon from './images/signup_icon.png';
+import SignInIcon from './images/sign_in.png';
+import CartIcon from './images/cart_icon.png';
+import FavoriteIcon from './images/favorite_icon.png';
+import OrderHistoryIcon from './images/order_history_icon.png';
+import Modal from './Modal';
+import OrderHistory from './OrderHistory';
+import RegisterForm from './RegisterForm';
+import Search from './Seach';
+import Settings from './Settings';
+import { actions, useSelector } from './store';
+
 
 function App() {
 
@@ -76,7 +85,7 @@ function App() {
     setShowAccount(false)
   }
 
-  function onAppClick() {
+  function onAppClick(e: React.SyntheticEvent) {
     setShowAccount(false)
     setShowMenu(false)
   }
@@ -87,50 +96,80 @@ function App() {
     setShowAccount(false)
   }
 
+  // function goHome() {
+  //   if (history.location.pathname !== "/") {
+  //     history.push("/")
+  //   }
+  // }
+
   return (
     <div className="App" onClick={onAppClick}>
-
       <nav>
         <div className="nav_title">
           <button onClick={onMenuClick} className="menu_mobile">
             <img src={Menu} alt="menu" />
           </button>
+          <Search className="search_mobile" />
           <Link to="/">
-            <div className="company-logo">
+            <div className="company-logo" onClick={() => dispatch(actions.removeCategoryId())}>
               <div className="name">COUNTUP</div>
               <img className="logo" src={logo} alt="logo" />
             </div>
           </Link>
         </div>
 
-        <p>Hi {user == null ? "guest" : user.name}!</p>
+        <p className="hi_msg">Hi {user == null ? "guest" : user.name}!</p>
 
-        <ul className={showMenu ? " active" : ""}>
+        <ul className={"nav_ul" + (showMenu ? " active" : "")}>
 
-          <li><NavLink replace exact to="/">Home</NavLink></li>
+          <li onClick={() => dispatch(actions.removeCategoryId())}>
+            <img className="menu_icon" src={HomeIcon} alt="register" />
+            <NavLink className="menu_text" replace exact to="/">Home</NavLink>
+          </li>
 
           {user === null ?
             <>
-              <li><NavLink replace to="/register">Register</NavLink></li>
-              <li><NavLink replace to="/sign_in">Sign In</NavLink></li>
+              <li>
+                <img className="menu_icon" src={RegisterIcon} alt="register" />
+                <NavLink className="menu_text" replace to="/register">Register</NavLink>
+              </li>
+              <li>
+                <img className="menu_icon" src={SignInIcon} alt="signin" />
+                <NavLink className="menu_text" replace to="/sign_in">Sign In</NavLink>
+              </li>
             </>
             :
             <>
-              <li><NavLink replace to="/cart">Cart</NavLink></li>
-              <li><NavLink replace to="/favorites">Favorites</NavLink></li>
-              <li><NavLink replace to="/order_history">Order History</NavLink></li>
+              <li>
+                <img className="menu_icon" src={CartIcon} alt="cart" />
+                <NavLink className="menu_text" replace to="/cart">Cart</NavLink>
+              </li>
+              <li>
+                <img className="menu_icon" src={FavoriteIcon} alt="favorite" />
+                <NavLink className="menu_text" replace to="/favorites">Favorites</NavLink>
+              </li>
+              <li>
+                <img className="menu_icon" src={OrderHistoryIcon} alt="order" />
+                <NavLink className="menu_text" replace to="/order_history">Order History</NavLink>
+              </li>
 
               <li className="account_li" onClick={e => { setShowAccount(!showAccount); e.stopPropagation() }}>
-                <div className="account_user">
-                  <img className="account_img" src={Account} alt="account" />
-                  {user.name}
+                <img className="menu_icon" src={Account} alt="account" />
+                <div className="menu_text">
+                  <div className="account_username">{user.name}</div>
                   <img className="account_down_arrow" src={DownArrow} alt="down arrow" />
                 </div>
-                {showAccount && <ul className="account_dropdown">
-                  <li><img className="account_img" src={Setting} alt="" />Account Setting</li>
-                  <li onClick={onSignOut}><img className="account_img" src={SignOut} alt="" /><Link to='/sign_in'>Sign Out</Link></li>
-                </ul>}
               </li>
+              {showAccount && <ul className="account_dropdown">
+                <li className="account_dropdown_list">
+                  <img className="menu_icon" src={Setting} alt="" />
+                  <Link className="menu_text" replace to="/setting">Account Setting</Link>
+                </li>
+                <li className="account_dropdown_list" onClick={onSignOut}>
+                  <img className="menu_icon" src={SignOut} alt="" />
+                  <Link className="menu_text" to='/sign_in'>Sign Out</Link>
+                </li>
+              </ul>}
 
             </>
           }

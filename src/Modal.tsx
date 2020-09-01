@@ -4,7 +4,7 @@ import './Modal.scss';
 type ModalProps = {
     className?: string
     onClick(): void
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 export default function Modal({ onClick, children, className }: ModalProps) {

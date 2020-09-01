@@ -13,10 +13,14 @@
         border: 1px solid grey;
         padding: 0 0.5rem;
 
+        @media (max-width: 600px) {
+            flex: 1;
+        }
+
         .search-btn {
             background: none;
             border: none;
-            padding: .3rem;
+            padding: 0.3rem;
 
             .searchImg {
                 height: 2rem;
@@ -29,6 +33,8 @@
             border: none;
             font-size: 1.2rem;
             outline: none;
+            min-width: 0;
+            width: 0;
         }
     }
 }

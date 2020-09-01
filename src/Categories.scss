@@ -1,17 +1,39 @@
 .Categories {
+  display: flex;
+  flex-flow: column;
+
+  @media (max-width: 600px) {
+    margin: 1rem 0;
+    background: white;
+  }
+
+  @keyframes showCategories {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  &.active {
+    animation: showCategories 300ms ease-out;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    align-self: center;
+    margin: 1.5rem 0;
+  }
+
+  .category-container {
     display: flex;
     flex-flow: column;
+    align-items: flex-start;
 
-    .title {
-        font-size: 1.3rem;
-        font-weight: bold;
-        align-self: center;
-        margin: 1.5rem 0;   
+    @media (max-width: 600px) {
+      flex-flow: row;
     }
-
-    .category-container {
-        display: flex;
-        flex-flow: column;
-        align-items: flex-start;
-    }
+  }
 }
