@@ -97,4 +97,4 @@ insert into Product (id, name, price, image, description,category_id) values
 ;
 
 insert into User (id, name, password) values 
-(1, 'Akiko', '123');
+(1, 'Akiko', 'fe85fa8d1786dd9c6349a85892e33104a2bb06ce');
