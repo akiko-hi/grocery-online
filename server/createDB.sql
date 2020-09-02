@@ -32,7 +32,7 @@ create table "Order" (
 id integer primary key autoincrement,
 user_id integer not null,
 date date,
-foreign key (user_id) references User(id)
+foreign key (user_id) references User(id) on delete cascade
 );
 
 create table OrderItem (
@@ -40,7 +40,7 @@ id integer primary key autoincrement,
 order_id integer not null,
 product_id integer not null,
 quantity integer,
-foreign key (order_id) references "Order"(id),
+foreign key (order_id) references "Order"(id) on delete cascade,
 foreign key (product_id) references Product(id)
 );
 
@@ -48,7 +48,7 @@ create table Favorite (
 user_id integer,
 product_id integer,
 primary key (user_id, product_id),
-foreign key (user_id) references User(id),
+foreign key (user_id) references User(id) on delete cascade,
 foreign key (product_id) references Product(id)
 );
 

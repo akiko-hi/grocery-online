@@ -46,7 +46,7 @@ export async function getOrderHistory(): Promise<Order[]> {
 }
 
 //products
-export async function getProducts(categoryId: number, skip: number, limit:number): Promise<Product[]> {
+export async function getProducts(categoryId: number, skip: number, limit: number): Promise<Product[]> {
     const res = await fetch(`/api/products/?categoryId=${categoryId}&skip=${skip}&limit=${limit}`);
     return res.json()
 }
@@ -77,3 +77,9 @@ export async function signOut() {
         method: 'POST'
     })
 }
+
+export async function deleteUser() {
+    await fetch('/api/deleteUser',
+        { method: 'POST' }
+    )
+} 

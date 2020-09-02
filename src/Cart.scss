@@ -3,6 +3,10 @@
     min-height: 0;
     flex: 1;
 
+    @media (max-width: 1000px) {
+        flex-flow: column;
+    }
+
     .empty_cart_screen {
         display: flex;
         flex-flow: column;
@@ -25,9 +29,8 @@
     .scroller {
         display: flex;
         flex-flow: column;
-        flex: 2;
+        flex: 1;
         overflow: auto;
-        margin-right: 1rem;
     }
 
     .cart_products {
@@ -56,6 +59,12 @@
                 width: 10rem;
                 object-fit: contain;
                 margin: 0 0.5rem;
+
+                @media (max-width:1000px) {
+                    height: 7rem;
+                    width: 7rem;
+                    
+                }
             }
 
             .cartP_price {
@@ -92,7 +101,6 @@
                 flex: 0.5;
 
                 button {
-                    font-size: 1.2rem;
                     border: none;
                     padding: 1rem;
                     border-radius: 5px;
@@ -128,8 +136,7 @@
         box-shadow: 2px 2px 3px rgba(97, 95, 95, 0.658);
         background: rgba(151, 149, 149, 0.74);
         padding: 1.5rem;
-        margin-right: 1rem;
-        flex: 0.5;
+        margin: 0 1rem 1rem;
 
         p {
             font-size: 1.2rem;

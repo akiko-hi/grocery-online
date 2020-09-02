@@ -1,0 +1,41 @@
+.Settings {
+    display: flex;
+    flex-flow: column;
+    width: 20rem;
+    align-self: center;
+    flex: 1;
+
+    * {
+        margin-bottom: 1rem;
+    }
+
+    label {
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        height: 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    button {
+        border: none;
+        background: green;
+        border-radius: 5px;
+        padding: 1rem;
+        color: white;
+        margin: .5rem 0;
+
+        &.delete_account_btn {
+            background: rgba(236, 2, 2, 0.767);
+        }
+
+    }
+
+}
+
+.settings_title {
+    font-weight: bold;
+    align-self: center;
+    margin-top: 1rem;
+}

@@ -40,3 +40,11 @@ export async function whoAmI(req: Request) {
     const db = await openDB()
     return await db.get("select id, name from User where Id = ?", userId)
 }
+
+export async function deleteUser(req: Request) {
+    const userId = req.session!.userId
+    if (!userId) { return null }
+    const db = await openDB()
+    await db.run('delete from User where id =?', userId )
+    req.session = null
+}

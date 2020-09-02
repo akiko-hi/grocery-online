@@ -19,7 +19,6 @@ import SignInIcon from './images/sign_in.png';
 import CartIcon from './images/cart_icon.png';
 import FavoriteIcon from './images/favorite_icon.png';
 import OrderHistoryIcon from './images/order_history_icon.png';
-import Modal from './Modal';
 import OrderHistory from './OrderHistory';
 import RegisterForm from './RegisterForm';
 import Search from './Seach';
@@ -202,6 +201,9 @@ function App() {
           </Route>
           <Route path='/order_history'>
             <OrderHistory />
+          </Route>
+          <Route path='/setting'>
+            <Settings />
           </Route>
         </Switch>
       </main>
