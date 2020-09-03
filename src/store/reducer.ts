@@ -116,7 +116,6 @@ function searchResult(state: Product[] = [], action: Actions): Product[] {
     }
 }
 
-
 export default combineReducers({
     categoryId,
     cart,

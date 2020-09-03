@@ -24,6 +24,7 @@ import RegisterForm from './RegisterForm';
 import Search from './Seach';
 import Settings from './Settings';
 import { actions, useSelector } from './store';
+import SignIn from './SignIn';
 
 
 function App() {
@@ -57,15 +58,8 @@ function App() {
     }
   }, [dispatch, user])
 
-  async function onSignIn(name: string, password: string) {
-    const user = await signIn(name, password)
-    if (user === null) {
-      alert("login failed")
-    } else {
-      dispatch(actions.signIn(user))
-      history.replace("/")
-
-    }
+  async function onSignIn() {
+    history.replace('/')
   }
 
   async function onSignUp(name: string, password: string) {
@@ -194,10 +188,11 @@ function App() {
             <Settings />
           </Route>
           <Route path="/register" >
-            <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} />
+            {/* <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} /> */}
+            <SignIn key="reg" onSuccess={onSignIn} act={signUp} title="Create your account" btn_message="Register"/>
           </Route>
           <Route path="/sign_in">
-            <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+            <SignIn key="si" onSuccess={onSignIn} act={signIn} title="Sign In" btn_message="Sign In"/>
           </Route>
           <Route path='/order_history'>
             <OrderHistory />

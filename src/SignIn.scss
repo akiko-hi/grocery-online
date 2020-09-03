@@ -1,0 +1,18 @@
+.SignIn {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: auto 0;
+}
+
+.title_sign_in {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert_msg {
+    margin-bottom: auto;
+    color: red;
+    font-weight: 600;
+}

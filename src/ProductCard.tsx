@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { signIn, addFavoriteItem, removeFavoriteItem } from './api';
 import { actions, useSelector } from './store';
 import { Product } from './types';
-import RegisterForm from './RegisterForm';
 import Modal from './Modal';
 import './ProductCard.scss';
+import SignIn from './SignIn';
 
 type ProductCardProps = {
     product: Product
@@ -42,14 +42,8 @@ export function ProductCard({ product }: ProductCardProps) {
         }
     }
 
-    async function onSignIn(name: string, password: string) {
-        const user = await signIn(name, password)
-        if (user === null) {
-            alert("login failed")
-        } else {
-            dispatch(actions.signIn(user))
-            setSignInMsg(undefined)
-        }
+    async function onSignIn() {
+        setSignInMsg(undefined)
     }
 
     return <div className="ProductCard">
@@ -78,7 +72,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
             <Modal className="popup animated" onClick={() => setSignInMsg(undefined)}>
                 <p>Sign in to {signInMsg}</p>
-                <RegisterForm title="Sign-in" btn_message="Sign-in" onClick={onSignIn} />
+                {/* <SignIn onSuccess={onSignIn} act={signIn} /> */}
             </Modal>
         }
 
