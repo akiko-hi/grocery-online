@@ -82,4 +82,8 @@ export async function deleteUser() {
     await fetch('/api/deleteUser',
         { method: 'POST' }
     )
-} 
+}
+
+export async function updatePassword(password: string) {
+    await fetch('/api/updatePassword', post({ password }))
+}

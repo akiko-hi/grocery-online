@@ -50,6 +50,13 @@ export async function deleteUser(req: Request) {
     const userId = req.session!.userId
     if (!userId) { return null }
     const db = await openDB()
-    await db.run('delete from User where id =?', userId )
+    await db.run('delete from User where id =?', userId)
     req.session = null
+}
+
+export async function updatePassword(req: Request) {
+    const userId = req.session!.userId
+    if (!userId) { return null }
+    const db = await openDB()
+    await db.run('update User set password = ? where id = ?', hash(req.body.password), userId)
 }

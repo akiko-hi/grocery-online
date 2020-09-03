@@ -1,7 +1,7 @@
 .Settings {
     display: flex;
     flex-flow: column;
-    width: 20rem;
+    width: 23rem;
     align-self: center;
     flex: 1;
 
@@ -24,10 +24,11 @@
         border-radius: 5px;
         padding: 1rem;
         color: white;
-        margin: .5rem 0;
 
         &.delete_account_btn {
             background: rgba(236, 2, 2, 0.767);
+            margin-bottom: auto;
+            margin-top: 0;
         }
 
     }
@@ -37,5 +38,19 @@
 .settings_title {
     font-weight: bold;
     align-self: center;
-    margin-top: 1rem;
+}
+
+.settings_header {
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
+
+.empty_p {
+    padding: .66rem;
+}
+
+.error_msg {
+    text-align: center;
+    color: red;
+    font-weight: 600;
 }
