@@ -188,10 +188,10 @@ function App() {
             <Settings />
           </Route>
           <Route path="/register" >
-            <SignIn key="reg" onSuccess={onSignIn} act={signUp} title="Create your account" btn_message="Register"/>
+            <SignIn key="reg" onSuccess={onSignIn} act={signUp} title="Create your account" btn_message="Register" failMessage="Your name is already taken"/>
           </Route>
           <Route path="/sign_in">
-            <SignIn key="si" onSuccess={onSignIn} act={signIn} title="Sign In" btn_message="Sign In"/>
+            <SignIn key="si" onSuccess={onSignIn} act={signIn} title="Sign In" btn_message="Sign In" failMessage="Your name or password is wrong"/>
           </Route>
           <Route path='/order_history'>
             <OrderHistory />

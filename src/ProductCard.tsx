@@ -72,7 +72,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
             <Modal className="popup animated" onClick={() => setSignInMsg(undefined)}>
                 <p>Sign in to {signInMsg}</p>
-                {/* <SignIn onSuccess={onSignIn} act={signIn} /> */}
+                <SignIn onSuccess={onSignIn}  act={signIn}  title="Sign In" btn_message="Sign In" failMessage="Your name or password is wrong"/>
             </Modal>
         }
 

@@ -10,9 +10,10 @@ type SignInProps = {
     btn_message: string
     act: (name: string, password: string) => Promise<User | null>
     onSuccess: () => void
+    failMessage: string
 }
 
-export default function SignIn({ title, btn_message, onSuccess, act }: SignInProps) {
+export default function SignIn({ title, btn_message, onSuccess, act, failMessage }: SignInProps) {
 
     const dispatch = useDispatch()
     const [showAlertMessage, setShowAlertMessage] = useState(false)
@@ -27,8 +28,8 @@ export default function SignIn({ title, btn_message, onSuccess, act }: SignInPro
         }
     }
 
-      return <div className="SignIn">
+    return <div className="SignIn">
         <RegisterForm title={title} btn_message={btn_message} onClick={onSignIn} />
-        <p className="alert_msg">{showAlertMessage ? <>Your name or password is wrong</> : <>&nbsp;</>}</p>
+        <p className="alert_msg">{showAlertMessage ? <>{failMessage}</> : <>&nbsp;</>}</p>
     </div>
 }
