@@ -8,23 +8,22 @@ import CheckOut from './CheckOut';
 import Favorites from './Favorites';
 import Home from './Home';
 import Account from './images/account.png';
+import CartIcon from './images/cart_icon.png';
 import DownArrow from './images/down-arrow.png';
+import FavoriteIcon from './images/favorite_icon.png';
+import HomeIcon from './images/home_icon.png';
 import logo from './images/logo.png';
 import Menu from './images/menu.png';
+import OrderHistoryIcon from './images/order_history_icon.png';
 import Setting from './images/setting.png';
-import SignOut from './images/sign_out.png';
-import HomeIcon from './images/home_icon.png';
 import RegisterIcon from './images/signup_icon.png';
 import SignInIcon from './images/sign_in.png';
-import CartIcon from './images/cart_icon.png';
-import FavoriteIcon from './images/favorite_icon.png';
-import OrderHistoryIcon from './images/order_history_icon.png';
+import SignOut from './images/sign_out.png';
 import OrderHistory from './OrderHistory';
-import RegisterForm from './RegisterForm';
-import Search from './Seach';
+import Search from './Search';
 import Settings from './Settings';
-import { actions, useSelector } from './store';
 import SignIn from './SignIn';
+import { actions, useSelector } from './store';
 
 
 function App() {
@@ -62,15 +61,6 @@ function App() {
     history.replace('/')
   }
 
-  async function onSignUp(name: string, password: string) {
-    const user = await signUp(name, password)
-    if (user === null) {
-      alert('failed')
-    } else {
-      dispatch(actions.signIn(user))
-      history.replace("/")
-    }
-  }
 
   async function onSignOut() {
     dispatch(actions.signOut())
@@ -123,11 +113,11 @@ function App() {
           {user === null ?
             <>
               <li>
-                <img className="menu_icon" src={RegisterIcon} alt="register" />
+                <img className="menu_icon bigger" src={RegisterIcon} alt="register" />
                 <NavLink className="menu_text" replace to="/register">Register</NavLink>
               </li>
               <li>
-                <img className="menu_icon" src={SignInIcon} alt="signin" />
+                <img className="menu_icon bigger" src={SignInIcon} alt="signin" />
                 <NavLink className="menu_text" replace to="/sign_in">Sign In</NavLink>
               </li>
             </>
