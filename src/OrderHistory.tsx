@@ -6,7 +6,7 @@ import { OrderTable } from './CheckOut';
 import { actions } from './store';
 import { Order } from './types';
 import './OrderHistory.scss';
-import ExpandArrow from './images/arrow.png';
+import Arrow from './images/arrow.png';
 
 export default function OrderHistory() {
 
@@ -29,7 +29,7 @@ export default function OrderHistory() {
         <h1>Order History</h1>
         <div className="outer_container">
 
-            <div className="inner_container">
+            <div className={"inner_container" + (order ? " active" : "")}>
 
                 <p className="order_date_title">Ordered on</p>
                 <div className="order_date_scroll">
@@ -42,18 +42,21 @@ export default function OrderHistory() {
                             <div className={"order_date" + (eachHistory.order_id === order?.order_id ? " active" : "")}
                                 onClick={() => setOrder(eachHistory)}>
                                 <div className="date">{new Date(eachHistory.date).toLocaleString()}</div>
-                                <img className="arrow" src={ExpandArrow} alt="arrow" />
+                                <img className="arrow" src={Arrow} alt="arrow" />
                             </div>
                         </>)}
                 </div>
 
             </div>
 
-            <div className="order_detail">
+            <div className={"order_detail" + (order ? " active" : "")}>
 
                 {order && <>
+                <div className="order_detail_buttons">
+                <button className="goBack_btn" onClick={() => setOrder(undefined)}><img src={Arrow} alt="arrow"/></button>
                     <Link to="/cart/" className="reorder_btn" 
                     onClick={() => order && dispatch(actions.reorder(order.items))}>Reorder</Link>
+                    </div>
                     <div className="order_table_wrapper">
                         <OrderTable className="order_table" cartItem={order.items} />
                     </div>
