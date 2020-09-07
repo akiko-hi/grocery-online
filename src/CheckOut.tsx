@@ -30,11 +30,11 @@ export default function CheckOut() {
         </div>}
 
         {orderNum ?
-            <>
-                <h1>Thank you for shopping with us!</h1>
+            <div className="msg_after_checkout">
+                <p className="thank_msg">Thank you for shopping with us!</p>
                 <p className="orderNum_msg">Your order number is {orderNum}</p>
                 <img className="confirmed_img" src={Confirmed} alt="order confirmed" />
-            </>
+            </div>
             :
             <>
                 <h1>Summary</h1>

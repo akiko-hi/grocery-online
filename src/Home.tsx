@@ -1,5 +1,5 @@
 import React from 'react';
-import Search from './Seach';
+import Search from './Search';
 import Categories from './Categories';
 import Products from './Products';
 import './Home.scss'

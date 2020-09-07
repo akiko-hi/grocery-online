@@ -155,8 +155,16 @@
     align-items: center;
 
     @media (max-width: 600px) {
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 5rem 1.5rem 2rem;
     }
+
+    &.account {
+      @media (max-width: 600px) {
+        padding: 1.5rem 2.5rem 1.5rem 2rem;
+      }
+    }
+
+ 
 
     &::after {
       content: "";

@@ -11,8 +11,10 @@ export default function Favorites() {
     return <div className="Favorites">
 
         {favorite.length === 0 ? <div className="empty_favorite">
-            <p>You don't have any favorited product</p>
-            <p>Click heart icon to remember what product you liked!</p>
+            <p>You don't have any favorited product<br />
+            Click heart icon to remember what product you liked!
+            </p>
+
             <img className="empty_favorite_img" src={EmptyFavorite} alt="empty favorited products" />
         </div>
             :

@@ -146,7 +146,7 @@ function App() {
               {showAccount && <ul className="account_dropdown">
                 <li className="account_dropdown_list">
                   <img className="menu_icon" src={Setting} alt="" />
-                  <Link className="menu_text" replace to="/setting">Account Setting</Link>
+                  <Link className="menu_text account" replace to="/setting">Account Setting</Link>
                 </li>
                 <li className="account_dropdown_list" onClick={onSignOut}>
                   <img className="menu_icon" src={SignOut} alt="" />

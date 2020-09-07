@@ -9,16 +9,19 @@
         display: flex;
         flex-flow: column;
         align-items: center;
+        flex: 1;
 
         p {
-            margin-bottom: 1rem;
             font-size: 1.5rem;
             font-weight: 600;
+            margin-top: auto;
+            margin-bottom: 3rem;
+            text-align: center;
         }
 
         .empty_favorite_img {
-            margin-top: 1rem;
             width: 20rem;
+            margin-bottom: auto;
         }
     }
 
