@@ -188,7 +188,6 @@ function App() {
             <Settings />
           </Route>
           <Route path="/register" >
-            {/* <RegisterForm title="Create an account" btn_message="Create your account" onClick={onSignUp} /> */}
             <SignIn key="reg" onSuccess={onSignIn} act={signUp} title="Create your account" btn_message="Register"/>
           </Route>
           <Route path="/sign_in">

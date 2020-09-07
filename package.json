@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5000/",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -40,7 +41,7 @@
     "start:server": "cd server && ts-node-dev --respawn ./server.ts && wait-on tcp:5000",
     "start:app": "react-scripts start",
     "start": "run-p --race start:server start:app",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cd server && npx tsc --outDir ../build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -26,7 +26,8 @@ app.use(cookieSession({ secret: "Akiko123", sameSite: "lax" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")))
-
+app.use('/static', express.static(path.join(__dirname, 'static')))
+app.use('/favicon.ico', express.static(path.join(__dirname, 'favicon.ico')))
 
 //categories
 app.get('/api/categories/', action(getCategories));
@@ -52,3 +53,7 @@ app.post('/api/signUp', action(signUp));
 app.get('/api/whoAmI', action(whoAmI));
 app.post('/api/deleteUser', action(deleteUser));
 app.post('/api/updatePassword', action(updatePassword));
+
+app.get('*', (req, res, next) => {
+	res.sendFile(path.join(__dirname, 'index.html'))
+})
