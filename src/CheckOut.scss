@@ -22,7 +22,7 @@
                 margin-bottom: 3rem;
             }
         }
-        
+
         .confirmed_img {
             width: 22rem;
             margin-bottom: auto;
@@ -44,6 +44,10 @@
             display: flex;
             align-items: flex-start;
 
+            @media (max-width: 1000px) {
+                flex: unset;
+            }
+
             > * {
                 flex: 1;
             }
@@ -63,9 +67,12 @@
             }
 
             p {
-                font-size: 1.5rem;
-                font-weight: bold;
+                font-size: 1.2rem;
                 margin-bottom: 1.5rem;
+
+                span {
+                    font-weight: bold;
+                }
             }
 
             .confirm_btn {

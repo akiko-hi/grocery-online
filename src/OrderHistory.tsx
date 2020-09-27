@@ -19,6 +19,7 @@ export default function OrderHistory() {
 
         async function load() {
             const orderHistories = await getOrderHistory()
+          
             setOrderHistory(orderHistories)
         }
     }, [])
@@ -33,7 +34,9 @@ export default function OrderHistory() {
                 <p className="order_date_title">Ordered on</p>
                 <div className="order_date_scroll">
 
-                    {orderHistory === undefined ? <div className="loading">loading...</div>
+                    {orderHistory === undefined ? <div className="loading_msg">loading...</div>
+                     :
+                     orderHistory.length === 0 ? <div className="loading_msg">You don't have any history yet</div>
                      :
                      orderHistory.map(eachHistory => <>
                             <div className={"order_date" + (eachHistory.order_id === order?.order_id ? " active" : "")}

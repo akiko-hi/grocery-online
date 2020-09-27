@@ -63,8 +63,10 @@ export function ProductCard({ product }: ProductCardProps) {
         {addedToCart &&
 
             <Modal className="popup" onClick={() => setAddedToCart(!addedToCart)} >
+                <div  onClick={() => setAddedToCart(!addedToCart)}>
                 <p>{product.name + ": added to cart"}</p>
                 <p>click the screen to go back</p>
+                </div>
             </Modal>
         }
 

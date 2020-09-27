@@ -16,7 +16,10 @@ export async function getOrderHistoty(req: Request) {
         order BY o.id
     `, userId)
 
-    const newArr = [];
+    const newArr = []; 
+    if(arr.length === 0) {
+        return []
+    }
     let newItem: Order = { order_id: arr[0].order_id, date: arr[0].date, items: [] }
 
     for (let i = 0; i < arr.length; i++) {

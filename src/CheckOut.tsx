@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { confirmOrder } from './api';
-import { getTotalPrice } from './cart_function';
+import { getTotalPrice, getTotalNumOfItem } from './cart_function';
 import { useSelector, actions } from './store';
 import { CartItem } from './types';
 import './CheckOut.scss';
@@ -43,7 +43,7 @@ export default function CheckOut() {
                         <OrderTable cartItem={cart} />
                     </div>
                     <div className="confirm_section">
-                        <p>Total ({cart.length} items): <span>${getTotalPrice(cart)}</span></p>
+                        <p>Total ({getTotalNumOfItem(cart)} items): <span>${getTotalPrice(cart)}</span></p>
                         <button onClick={() => onConfirm()} className="confirm_btn">Confirm my order</button>
                     </div>
                 </div>

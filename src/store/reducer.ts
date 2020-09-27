@@ -88,38 +88,38 @@ function favorite(state: Product[] = [], action: Actions): Product[] {
     }
 }
 
-function user(state: User | null = null, action: Actions): User | null {
+    function user(state: User | null = null, action: Actions): User | null {
 
-    switch (action.type) {
-        case getType(actions.signIn):
-            return action.payload
+        switch (action.type) {
+            case getType(actions.signIn):
+                return action.payload
 
-        case getType(actions.signOut):
-            return null
+            case getType(actions.signOut):
+                return null
 
-        default:
-            return state
+            default:
+                return state
+        }
     }
-}
 
-function searchResult(state: Product[] = [], action: Actions): Product[] {
+    function searchResult(state: Product[] = [], action: Actions): Product[] {
 
-    switch (action.type) {
-        case getType(actions.setSearchResult):
-            return action.payload
+        switch (action.type) {
+            case getType(actions.setSearchResult):
+                return action.payload
 
-        case getType(actions.pickCategory):
-            return []
+            case getType(actions.pickCategory):
+                return []
 
-        default:
-            return state
+            default:
+                return state
+        }
     }
-}
 
-export default combineReducers({
-    categoryId,
-    cart,
-    favorite,
-    user,
-    searchResult
-})
+    export default combineReducers({
+        categoryId,
+        cart,
+        favorite,
+        user,
+        searchResult
+    })

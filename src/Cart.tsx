@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { actions, useSelector } from './store';
-import { getTotalPrice } from './cart_function';
+import { getTotalPrice, getTotalNumOfItem } from './cart_function';
 import './Cart.scss';
 import Remove from './images/close.png';
 import EmptyCart from './images/empty_cart.svg';
@@ -46,7 +46,7 @@ export default function Cart() {
             </div>
 
                 <div className="payment_details">
-                    <p>Subtotal ({cart.length} items): <span>${getTotalPrice(cart)}</span></p>
+                    <p>Subtotal ({getTotalNumOfItem(cart)} items): <span>${getTotalPrice(cart)}</span></p>
                     <Link to="/cart/checkout" className="checkout-btn">Proceed to checkout</Link>
                 </div>
 
